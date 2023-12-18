@@ -1,0 +1,81 @@
+@media print {
+   #header, aside, #footer, .print_hidden, .pagination {display:none!important;}
+   .container {width:100%!important;zoom:.6;}  
+   .content_border_wrapper {
+      border:0 !important;
+      padding:0 !important;
+   }
+   .custom_table th {
+      background-color: var(--colorDBE1E8) !important;
+   }
+   .custom_table.row_style th,
+   .custom_table.row_style td {
+      border-left: 1px solid var(--colorDBE1E8);
+      padding: .5rem;
+   }
+   .custom_table.row_style th:last-child,
+   .custom_table.row_style td:last-child {
+      border-right: 1px solid var(--colorDBE1E8);
+   }
+   .custom_table.col_style.non_scroll th, 
+   .custom_table.col_style.non_scroll td {
+      display:table-cell !important;
+      /* padding:2rem 1rem; */
+      padding: 1rem;
+      vertical-align: middle !important;
+   }
+   .custom_table.col_style.non_scroll th {
+      border-right: 1px solid var(--colorDBE1E8) !important;
+   }
+   .custom_table.col_style.non_scroll tr:first-child td {
+      border-top: 2px solid var(--colorDBE1E8) !important;
+   }
+   .w150px {
+      width: auto !important;
+   }
+   .table_filter > p {
+      float:left !important;
+   }
+   .table_filter .form_wrapper,
+   .table_filter .table_sch_form {
+      float:right !important;
+   }
+   .table_filter .form_wrapper select, 
+   .table_filter .form_wrapper button.btn, 
+   .table_filter .form_wrapper a.btn, 
+   .table_filter .table_sch_form select, 
+   .table_filter .table_sch_form button.btn,
+   .table_filter .table_sch_form a.btn {
+      display: none!important;
+      margin:0 !important;
+      width:auto !important;
+   }
+   .table_sch_form button.btn,
+   .btn {
+      display:none !important;
+   }
+   .modal > .modal_container {
+      position: relative;
+      width:100%;
+      transform:none;
+      max-width:100%;
+      max-height: 100%;
+      box-shadow:none;
+      overflow:hidden;
+      left:auto;
+      top:auto;
+   }
+   .btn_modal_close {
+      display:none;
+   }
+   .modal > .modal_container.scrollDown .modal_header {
+      box-shadow:none;
+   }
+   .modal .modal_header  {
+      position: relative;
+   }
+   .modal .custom_table {
+      min-width:100%;
+   }
+
+}

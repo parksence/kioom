@@ -1,0 +1,115 @@
+#header {
+   position: relative;
+   width: 100%;
+   left: 0;
+   top: 0;
+   height: var(--headerHeight);
+   line-height: var(--headerHeight);
+   background-color: #fff;
+   border-bottom: 1px solid var(--colorE4E7EC);
+ }
+ #header .page_title {
+   position: absolute;
+ }
+ 
+ #header .container::after {
+   content: "";
+   display: block;
+   clear: both;
+ }
+ 
+ #header .searchForm {
+   float: left;
+   position: relative;
+ }
+ 
+ #header .searchForm .searchInput {
+   width: 29rem;
+   height: 4rem;
+   background-color: #eff0f6;
+   color: #5a5a5a;
+   padding: 1rem 5.5rem 1rem 2rem;
+   border-radius: 2.7rem;
+   font-size: 1.4rem;
+ }
+ 
+ #header .searchForm .searchInput:focus {
+   box-shadow: 0 0 3px #FF8450 !important;
+   -moz-box-shadow: 0 0 3px #FF8450 !important;
+   -webkit-box-shadow: 0 0 3px #FF8450 !important;
+ }
+ 
+ #header .searchForm .searchBtn {
+   position: absolute;
+   right: 2rem;
+   top: 0;
+   bottom: 0;
+ }
+ 
+ #header .user {
+   float: right;
+   padding: 1rem 0;
+   letter-spacing: .2px;
+   font-size: 1.4rem;
+ }
+ 
+ #header .user span {
+   position: relative;
+   font-size: 1.2rem;
+   padding-right: 1rem;
+   margin-right: 1rem;
+ }
+ 
+ #header .user span > b {
+   font-size: 1.4rem;
+ }
+ 
+ #header .user span::after {
+   content: "";
+   width: 1px;
+   height: 2rem;
+   position: absolute;
+   top: 0;
+   right: 0;
+   background-color: #e5e5ed;
+ }
+ 
+ #header .user > a {
+   color: #606060;
+ }
+
+ #header .controller {
+   float:right;
+}
+#header .controller>a {
+   color: var(--colorfff);
+}
+#header .controller .log_menu {
+   display: inline-block;
+   vertical-align: middle;
+   margin-right: 2.5rem;
+}
+#header .controller .log_menu > *:not(.siteMap-btn) {
+   border-right: 1px solid var(--colorE4E7EC);
+   line-height: 1;
+   font-size:1.6rem;
+   font-weight: 500;
+   color:var(--color101828);
+   display:inline-block;
+   padding: 0 1.4rem;
+}
+#header .controller .log_menu > a:hover,
+#header .controller .log_menu > button:hover {
+   text-decoration: underline;
+}
+#header .controller .log_menu > *:not(.siteMap-btn):last-child {
+   padding-right: 0;
+   border-right: 0;
+}
+#header .controller .log_menu > p {
+   letter-spacing: -0.01px;
+}
+#header .controller .log_menu #user_name {
+   color: var(--color0046DE);
+   text-decoration: underline;
+}

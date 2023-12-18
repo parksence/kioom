@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="/css/common.css">
+   <script src="/js/libs/jquery/jquery-3.2.1.min.js"></script>
+</head>
+<style>
+   a {color: blue !important; text-decoration: underline !important;}
+   table td,
+   table th {
+      border-right:1px solid var(--colorEAEAEA) !important;
+      border-bottom:1px solid var(--colorEAEAEA) !important;
+      border-left:1px solid var(--colorEAEAEA) !important;
+      border-spacing: 0;
+      padding:1rem !important;
+      font-size: 1.5rem !important;
+   }
+   table th,
+   table tr:first-child td {
+      border-top: 1px solid var(--colorEAEAEA) !important;
+   }
+   .tab_wrap {display: table; 
+      box-shadow:0 5px 12px 2px rgba(0,0,0,0.1); 
+      position:sticky; top:0; width: 100%; margin: 50px auto; 
+      table-layout: fixed;}
+   .tab_wrap > button {display:table-cell; font-size:20px; width: 50%; text-align: center; background-color:var(--colorF6F6F6);
+      padding: 20px 10px; background-color:#fff;}
+   .tab_wrap > button:hover {text-decoration:underline;}
+   .tab_wrap > button.active {background-color:var(--color28B6F6); color:var(--colorfff)}
+   .custom_table {display: none;}
+   .custom_table.active {display: table;}
+</style>
+<body>
+   <h1 class="txt_center margin_top30 margin_bt30">
+      한국한의학연구원 맵진 사이트맵
+   </h1>
+   <!-- tab menu01 -->
+   <table id='tab01' class="custom_table colorF3F7FA active">
+      <colgroup>
+         <col style="width:10%">
+         <col style="width:10%">
+         <col style="width:10%">
+         <col style="width:10%">
+         <col style="width:30%">
+         <col style="width:20%">
+      </colgroup>
+      <thead>
+         <tr>
+            <th>depth1</th>
+            <th>depth2</th>
+            <th>depth3</th>
+            <th>depth4</th>
+            <th>링크</th>
+            <th>비고</th>
+         </tr>
+      </thead>  
+      <tbody>
+         <tr>
+            <td colspan="4" style="font-weight:bold; font-size:2rem;">레이아웃</td>
+            <td> <a href="./layout" target="_blank">./layout</a> </td>
+            <td></td>
+         </tr>
+         <tr>
+            <td style="font-weight:bold; font-size:2rem;">로그인</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> <a href="./login" target="_blank">./login</a> </td>
+            <td></td>
+         </tr>
+         <tr>
+            <td rowspan="3" style="font-weight:bold; font-size:2rem;">사용자 관리</td>
+            <td rowspan="3">병원 관리</td>
+            <td></td>
+            <td></td>
+            <td> <a href="./" target="_blank">./web/user/dashboard</a> </td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>병원 계정 등록</td>
+            <td></td>
+            <td> <a href="./user/hospital" target="_blank">./web/user/hospital</a> </td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>환자 관리</td>
+            <td></td>
+            <td> <a href="./user/patient" target="_blank">./web/user/patient</a> </td>
+            <td></td>
+         </tr>
+         <tr>
+            <td style="font-weight:bold; font-size:2rem;">데이터 관리</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> <a href="./data/manage" target="_blank">./web/data/manage</a> </td>
+            <td></td>
+         </tr>
+         <tr>
+            <td style="font-weight:bold; font-size:2rem;">병원 관리자</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> <a href="./user/hospital" target="_blank">./web/user/hospital</a> </td>
+            <td></td>
+         </tr>
+         <tr>
+            <td style="font-weight:bold; font-size:2rem;">모니터링</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> <a href="./monitoring/log" target="_blank">./web/monitoring/log</a> </td>
+            <td></td>
+         </tr>
+      </tbody>
+   </table>
+</body>
+</html>

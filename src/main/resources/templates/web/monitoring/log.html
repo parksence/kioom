@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
+   <title>한국한의학연구원</title>
+   <meta name="description" content="">
+   <meta name="keywords" content="">
+   <!-- favicon -->
+   <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+   <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+   <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+   <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+   <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+   <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+   <link rel="manifest" href="/img/favicon/manifest.json">
+   <meta name="msapplication-TileColor" content="#ffffff">
+   <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+   <meta name="theme-color" content="#ffffff">
+   <!-- css -->
+   <link rel="stylesheet" href="/css/mixin.css">
+   <!-- icon font -->
+   <link rel="stylesheet" href="/css/iconFont/XEIcon-2.2.0/xeicon.min.css">
+   <!-- plugIn -->
+   <script src="/js/libs/jquery/jquery-3.2.1.min.js"></script>
+   <!-- slick slide -->
+   <link rel="stylesheet" href="/js/libs/slick-1.8.1/slick/slick.css">
+   <script src="/js/libs/slick-1.8.1/slick/slick.min.js"></script>
+   <!-- js -->
+   <script src="/js/layout.js"></script>
+   <script src="/js/fileUpload.js"></script>
+   <script src="/js/util.js"></script>
+</head>
+
+<body>
+   <div id="wrap">
+      <aside id="aside">
+         <h1 class="logo">
+            <a href="/">
+               <img src="/img/common/logo.png" alt="한국한의학연구원">
+            </a>
+         </h1>
+         <ul class="">
+            <li class="depth1">
+               <a href="#" class="depth1_title">사용자관리</a>
+               <ul class="depth2_wrap">
+                  <li class="depth2">
+                     <a href="/user/hospital" class="depth2_title">병원 관리</a>
+                  </li>
+                  <li class="depth2">
+                     <a href="/user/patient" class="depth2_title">환자 관리</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="depth1">
+               <a href="/data/manage" class="depth1_title">데이터관리</a>
+            </li>
+            <li class="depth1">
+               <a href="/monitoring/log" class="depth1_title active">모니터링</a>
+            </li>
+         </ul>
+         <button class="siteMap-btn">
+            <span class="siteMap-top"></span>
+            <span class="siteMap-mid"></span>
+            <span class="siteMap-bt"></span>
+         </button>
+      </aside>
+      <div id="content_body">
+         <header id="header">
+            <div class="container">
+               <div class="clear-fix">
+                  <h3 class="page_title">모니터링</h3>
+                  <div class="controller">
+                     <div class="log_menu before">
+                        <p>
+                           <a href="/user/account" id="user_name">관리자</a>님 안녕하세요.
+                        </p>
+                        <button type="button">로그아웃</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <main id="main">
+            <div class="container">
+               <section>
+                  <article>
+                     <div class="subContainer padding30">
+                        <div class="sub_content_section">
+                           <form action="">
+                              <div class="content_box">
+                                 <section class="search_form_section">
+                                    <div class="article_row">
+                                       <article class="article_col">
+                                          <b class="article_title">
+                                             <label for="search">검색</label>
+                                          </b>
+                                          <div class="article_content">
+                                             <span class="input_wrap col2">
+                                                <input type="text" id="search" name="" placeholder="검색어를 입력해주세요">
+                                                <button class="btn style01 large input_w120">검색</button>
+                                             </span>
+                                          </div>
+                                       </article>
+                                    </div>
+                                 </section>
+                              </div> 
+                           </form>
+                        </div>
+                     </div>
+                  </article>
+                  <article>
+                     <div class="subContainer">
+                        <div class="sub_content_section">
+                           <nav id="content_tab_nav">
+                              <a href="#" class="active">접근권한이 없는 계정의 접속시도이력</a>
+                              <a href="#">비인가 IP의 접속시도이력</a>
+                              <a href="#">과도한 정보 조회 행위 분석</a>
+                              <a href="#">과도한 정보 다운로드 행위 분석</a>
+                              <a href="#">날짜별 의심징후</a>
+                           </nav>
+                           <span class="total_text">Total: 10건</span>
+                           <div class="table_wrap">
+                              <table class="custom_table">
+                                 <colgroup>
+                                    <col class="w5">
+                                    <col class="w10">
+                                    <col>
+                                    <col class="w40">
+                                    <col class="w15">
+                                    <col class="w15">
+                                 </colgroup>
+                                 <thead>
+                                    <tr>
+                                       <th scope="col">번호</th>
+                                       <th scope="col">계정</th>
+                                       <th scope="col">이름</th>
+                                       <th scope="col">병원명</th>
+                                       <th scope="col">ip 주소</th>
+                                       <th scope="col">일시</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>miracle089</td>
+                                       <td>이준호</td>
+                                       <td>도손한의원 노원</td>
+                                       <td>123.212.38.66</td>
+                                       <td>2023.09.15 (금) 17:13</td>
+                                    </tr>
+                                    <tr>
+                                       <td>2</td>
+                                       <td>miracle089</td>
+                                       <td>이준호</td>
+                                       <td>도손한의원 노원</td>
+                                       <td>123.212.38.66</td>
+                                       <td>2023.09.15 (금) 17:11</td>
+                                    </tr>
+                                    <tr>
+                                       <td>3</td>
+                                       <td>miracle089</td>
+                                       <td>이준호</td>
+                                       <td>도손한의원 노원</td>
+                                       <td>123.212.38.66</td>
+                                       <td>2023.09.15 (금) 17:10</td>
+                                    </tr>
+                                    <tr>
+                                       <td>4</td>
+                                       <td>qodlduf010</td>
+                                       <td>김효연</td>
+                                       <td>미라온한의원</td>
+                                       <td>180.66.92.149</td>
+                                       <td>2022.08.04 (수) 21:02</td>
+                                    </tr>
+                                    <tr>
+                                       <td>5</td>
+                                       <td>qodlduf010</td>
+                                       <td>김효연</td>
+                                       <td>미라온한의원</td>
+                                       <td>180.66.92.149</td>
+                                       <td>2022.08.02 (월) 16:00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>6</td>
+                                       <td>qodlduf010</td>
+                                       <td>김효연</td>
+                                       <td>미라온한의원</td>
+                                       <td>180.66.92.149</td>
+                                       <td>2022.08.02 (월) 15:56</td>
+                                    </tr>
+                                    <tr>
+                                       <td>7</td>
+                                       <td>qodlduf010</td>
+                                       <td>김효연</td>
+                                       <td>미라온한의원</td>
+                                       <td>180.66.92.149</td>
+                                       <td>2022.06.28 (수) 08:11</td>
+                                    </tr>
+                                    <tr>
+                                       <td>8</td>
+                                       <td>qodlduf010</td>
+                                       <td>김효연</td>
+                                       <td>미라온한의원</td>
+                                       <td>180.66.92.149</td>
+                                       <td>2022.06.28 (수) 08:11</td>
+                                    </tr>
+                                    <tr>
+                                       <td>9</td>
+                                       <td>qodlduf010</td>
+                                       <td>김효연</td>
+                                       <td>미라온한의원</td>
+                                       <td>180.66.92.149</td>
+                                       <td>2022.06.28 (수) 08:10</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <div class="pagination">
+                              <ul>
+                                 <li class="first_page">
+                                    <a href="#"></a>
+                                 </li>
+                                 <li class="prev_page">
+                                    <a href="#"></a>
+                                 </li>
+                                 <li class="active">
+                                    <a href="#">
+                                       1
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="#">
+                                       2
+                                    </a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#">
+                                       3
+                                    </a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#">
+                                       4
+                                    </a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#">
+                                       5
+                                    </a>
+                                 </li>
+                                 <li class="next_page">
+                                    <a href="#"></a>
+                                 </li>
+                                 <li class="last_page">
+                                    <a href="#"></a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+               </section>
+            </div>
+         </main>
+      </div>
+   </div>
+</body>
+</html>

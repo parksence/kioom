@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
+   <title>한국한의학연구원</title>
+   <meta name="description" content="">
+   <meta name="keywords" content="">
+   <!-- favicon -->
+   <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+   <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+   <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+   <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+   <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+   <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+   <link rel="manifest" href="/img/favicon/manifest.json">
+   <meta name="msapplication-TileColor" content="#ffffff">
+   <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+   <meta name="theme-color" content="#ffffff">
+   <!-- css -->
+   <link rel="stylesheet" href="/css/mixin.css">
+   <!-- icon font -->
+   <link rel="stylesheet" href="/css/iconFont/XEIcon-2.2.0/xeicon.min.css">
+   <!-- plugIn -->
+   <script src="/js/libs/jquery/jquery-3.2.1.min.js"></script>
+   <!-- slick slide -->
+   <link rel="stylesheet" href="/js/libs/slick-1.8.1/slick/slick.css">
+   <script src="/js/libs/slick-1.8.1/slick/slick.min.js"></script>
+   <!-- js -->
+   <script src="/js/layout.js"></script>
+   <script src="/js/util.js"></script>
+</head>
+
+<body>
+   <div id="wrap">
+      <aside id="aside">
+         <h1 class="logo">
+            <a href="/">
+               <img src="/img/common/logo.png" alt="한국한의학연구원">
+            </a>
+         </h1>
+         <ul class="">
+            <li class="depth1">
+               <a href="#" class="depth1_title on active">사용자관리</a>
+               <ul class="depth2_wrap">
+                  <li class="depth2">
+                     <a href="/user/hospital" class="depth2_title active">병원 관리</a>
+                  </li>
+                  <li class="depth2">
+                     <a href="/user/patient" class="depth2_title">환자 관리</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="depth1">
+               <a href="/data/manage" class="depth1_title">데이터관리</a>
+            </li>
+            <li class="depth1">
+               <a href="/monitoring/log" class="depth1_title">모니터링</a>
+            </li>
+         </ul>
+         <button class="siteMap-btn">
+            <span class="siteMap-top"></span>
+            <span class="siteMap-mid"></span>
+            <span class="siteMap-bt"></span>
+         </button>
+      </aside>
+      <div id="content_body">
+         <header id="header">
+            <div class="container">
+               <div class="clear-fix">
+                  <h3 class="page_title">
+                     회원 리스트
+                  </h3>
+                  <div class="controller">
+                     <div class="log_menu before">
+                        <p>
+                           <a href="/user/account" id="user_name">관리자</a>님 안녕하세요.
+                        </p>
+                        <button type="button">로그아웃</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <main id="main">
+            <div class="container">
+               <section>
+                  <article>
+                     <div class="subContainer">
+                        <div class="sub_content_section">
+                           <div class="board_info">
+                              <h5 class="board_info_title">병원 계정 등록</h5>
+                              <form action="">
+                                 <table class="custom_table">
+                                    <colgroup>
+                                       <col class="w15">
+                                       <col class=""> 
+                                    </colgroup>
+                                    <tbody>
+                                       <tr>
+                                          <th scope="row">
+                                             <label for="user_id">계정</label><span>*</span>
+                                          </th>
+                                          <td>
+                                            <input type="text" id="user_id" name="user_id" class="input_full">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <th scope="row">
+                                             <label for="emailAddr1">E-mail</label><span>*</span>
+                                          </th>
+                                          <td>
+                                             <div class="input_wrap col3 justify_start">
+                                                <input type="text" class="input_w200" name="emailAddr1" id="emailAddr1" value="" maxlength="20">
+                                                @
+                                                <input type="text" class="input_w200" name="emailAddr2" id="emailAddr2" value="">
+                                                <span class="custom_select_box input_w200">
+                                                   <select name="emailAddr3" id="emailAddr3">
+                                                      <option value="" selected="" disabled="">선택하세요</option>
+                                                      <option value="write">직접입력</option>
+                                                      <option value="gmail.com">gmail.com</option>
+                                                      <option value="daum.net">daum.net</option>
+                                                      <option value="hanmail.net">hanmail.net</option>
+                                                      <option value="naver.com">naver.com</option>
+                                                      <option value="nate.com">nate.com</option>
+                                                      <option value="paran.com">paran.com</option>
+                                                      <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                                  </select>
+                                                </span>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <th scope="row">
+                                            비밀번호<span>*</span>
+                                          </th>
+                                          <td>
+                                             <button class="status type06" type="button">비밀번호 변경</button>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <th scope="row">
+                                             <label for="hospital_name">병원명</label><span>*</span>
+                                          </th>
+                                          <td>
+                                             <div class="custom_select_box input_full">
+                                                <select name="hospital_name" id="hospital_name">
+                                                   <option value="" selected disabled>선택하세요</option>
+                                                   <option value="한국한의학연구원">한국한의학연구원</option>
+                                                </select>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <th scope="row">병원 위치<span>*</span></th>
+                                          <td>
+                                             <button class="btn style02 medium" type="button">주소찾기</button>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <th scope="row">
+                                             <label for="manager">담당자</label>
+                                          </th>
+                                          <td>
+                                             <div class="custom_select_box input_full">
+                                                <select name="manager" id="manager">
+                                                   <option value="" selected disabled>선택하세요</option>
+                                                   <option value="홍길동">홍길동</option>
+                                                </select>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <th scope="row">
+                                             <label for="manager_tel1">담당자 연락처</label><span>*</span>
+                                          </th>
+                                          <td>
+                                             <div class="input_wrap col3 justify_start">
+                                                <span class="custom_select_box input_w200">
+                                                   <select name="manager_tel1" id="manager_tel1">
+                                                      <option value="02">02</option>
+                                                      <option value="042">042</option>
+                                                      <option value="043">043</option>
+                                                      <option value="044">044</option>
+                                                      <option value="010">010</option>
+                                                      <option value="011">011</option>
+                                                  </select>
+                                                </span>
+                                                <input type="text" class="input_w200" name="manager_tel2" id="manager_tel2" value="" maxlength="4">
+                                                <input type="text" class="input_w200" name="manager_tel3" id="manager_tel3" value="" maxlength="4">
+                                             </div>
+                                          </td>
+                                       </tr>
+
+                                       <tr>
+                                          <th scope="row">
+                                             <label for="hospital_tel1">병원 연락처</label><span>*</span>
+                                          </th>
+                                          <td>
+                                             <div class="input_wrap col3 justify_start">
+                                                <span class="custom_select_box input_w200">
+                                                   <select name="hospital_tel1" id="hospital_tel1">
+                                                      <option value="02">02</option>
+                                                      <option value="042">042</option>
+                                                      <option value="043">043</option>
+                                                      <option value="044">044</option>
+                                                      <option value="010">010</option>
+                                                      <option value="011">011</option>
+                                                  </select>
+                                                </span>
+                                                <input type="text" class="input_w200" name="hospital_tel2" id="hospital_tel2" value="" maxlength="4">
+                                                <input type="text" class="input_w200" name="hospital_tel3" id="hospital_tel3" value="" maxlength="4">
+                                             </div>
+                                          </td>
+                                       </tr>
+
+                                       <tr>
+                                          <th scope="row">
+                                             <label for="fax_tel1">팩스 번호</label>
+                                          </th>
+                                          <td>
+                                             <div class="input_wrap col3 justify_start">
+                                                <span class="custom_select_box input_w200">
+                                                   <select name="fax_tel1" id="fax_tel1">
+                                                      <option value="02">02</option>
+                                                      <option value="042">042</option>
+                                                      <option value="043">043</option>
+                                                      <option value="044">044</option>
+                                                      <option value="010">010</option>
+                                                      <option value="011">011</option>
+                                                  </select>
+                                                </span>
+                                                <input type="text" class="input_w200" name="fax_tel2" id="fax_tel2" value="" maxlength="4">
+                                                <input type="text" class="input_w200" name="fax_tel3" id="fax_tel3" value="" maxlength="4">
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <div class="btn_wrap justify_end margin_top40">
+                                    <button class="btn style06 xlarge" type="button" onclick="window.location.href='/'">취소</button>
+                                    <button class="btn style01 xlarge" type="button">추가</button>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+               </section>
+            </div>
+         </main>
+      </div>
+   </div>
+</body>
+</html>

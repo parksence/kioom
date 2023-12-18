@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
+   <title>한국한의학연구원</title>
+   <meta name="description" content="">
+   <meta name="keywords" content="">
+   <!-- favicon -->
+   <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+   <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+   <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+   <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+   <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+   <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+   <link rel="manifest" href="/img/favicon/manifest.json">
+   <meta name="msapplication-TileColor" content="#ffffff">
+   <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+   <meta name="theme-color" content="#ffffff">
+   <!-- css -->
+   <link rel="stylesheet" href="/css/mixin.css">
+   <!-- icon font -->
+   <link rel="stylesheet" href="/css/iconFont/XEIcon-2.2.0/xeicon.min.css">
+   <!-- plugIn -->
+   <script src="/js/libs/jquery/jquery-3.2.1.min.js"></script>
+   <script src="/js/libs/jquery-ui/jquery-ui.min.js"></script>
+   <!-- slick slide -->
+   <link rel="stylesheet" href="/js/libs/slick-1.8.1/slick/slick.css">
+   <script src="/js/libs/slick-1.8.1/slick/slick.min.js"></script>
+   <script src="/js/libs/chart.js/Chart3.7.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+   <!-- js -->
+   <script src="/js/layout.js"></script>
+   <script src="/js/util.js"></script>
+</head>
+<body>
+   <div id="wrap">
+      <aside id="aside">
+         <h1 class="logo">
+            <a href="/">
+               <img src="/img/common/logo.png" alt="한국한의학연구원">
+            </a>
+         </h1>
+         <ul class="">
+            <li class="depth1">
+               <a href="#" class="depth1_title on active">사용자관리</a>
+               <ul class="depth2_wrap">
+                  <li class="depth2">
+                     <a href="/user/hospital" class="depth2_title active">병원 관리</a>
+                  </li>
+                  <li class="depth2">
+                     <a href="/user/patient" class="depth2_title">환자 관리</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="depth1">
+               <a href="/data/manage" class="depth1_title">데이터관리</a>
+            </li>
+            <li class="depth1">
+               <a href="/monitoring/log" class="depth1_title">모니터링</a>
+            </li>
+         </ul>
+         <button class="siteMap-btn">
+            <span class="siteMap-top"></span>
+            <span class="siteMap-mid"></span>
+            <span class="siteMap-bt"></span>
+         </button>
+      </aside>
+      <div id="content_body">
+         <header id="header">
+            <div class="container">
+               <div class="clear-fix">
+                  <h3 class="page_title">교육컨텐츠</h3>
+                  <div class="controller">
+                     <div class="log_menu before">
+                        <p>
+                           <a href="/user/account" id="user_name">관리자</a>님 안녕하세요.
+                        </p>
+                        <button type="button">로그아웃</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <main id="main">
+            <div class="container">
+               <section class="widget_section">
+                  <article>
+                     <div>
+                        <div class="widget_container">
+                           <h4 class="fontWeight_700 margin_bt10">맥진 데이터 요약</h4>
+                           <div class="table_wrap">
+                              <table class="custom_table">
+                                 <colgroup>
+                                    <col class="w5">
+                                    <col>
+                                    <col class="w60">
+                                    <col>
+                                 </colgroup>
+                                 <thead>
+                                    <tr>
+                                       <th scope="col">번호</th>
+                                       <th scope="col">환자명</th>
+                                       <th scope="col">맥진 데이터</th>
+                                       <th scope="col">일시</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>이동희</td>
+                                       <td>Pulse Waveform</td>
+                                       <td>2023-04-10</td>
+                                    </tr>
+                                    <tr>
+                                       <td>2</td>
+                                       <td>송문호</td>
+                                       <td>Pulse Waveform</td>
+                                       <td>2023-09-26</td>
+                                    </tr>
+                                    <tr>
+                                       <td>3</td>
+                                       <td>배동열</td>
+                                       <td>Pulse Diagnosis</td>
+                                       <td>2023-09-26</td>
+                                    </tr>
+                                    <tr>
+                                       <td>4</td>
+                                       <td>이민호</td>
+                                       <td>Hemodynamic</td>
+                                       <td>2023-09-26</td>
+                                    </tr>
+                                    <tr>
+                                       <td>5</td>
+                                       <td>송강호</td>
+                                       <td>Pulse Waveform Analysis (Time, Age)</td>
+                                       <td>2023-09-26</td>
+                                    </tr>
+                                    <tr>
+                                       <td>6</td>
+                                       <td>김진우</td>
+                                       <td>Hemodynamic & Pulse Pressure Analysis</td>
+                                       <td>2023-09-26</td>
+                                    </tr>
+                                    <tr>
+                                       <td>7</td>
+                                       <td>이태운</td>
+                                       <td>Pulse Diagnosis</td>
+                                       <td>2023-09-26</td>
+                                    </tr>
+                                    <tr>
+                                       <td>8</td>
+                                       <td>김태훈</td>
+                                       <td>Vessel Elasticity</td>
+                                       <td>2023-09-26</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="widget_container_wrapper">
+                        <div class="widget_container">
+                           <div class="user_widget">
+                              <div class="user_widget_section01">
+                                 <div>
+                                    <figure class="thum"></figure>
+                                    <div>
+                                       <b>한마음한의원</b>
+                                       <span>김태윤 담당자</span>
+                                    </div>
+                                 </div>
+                                 <a href="#">관리</a>
+                              </div>
+                              <div class="user_widget_section02">
+                                 <div>
+                                    <b>위치</b>
+                                    <p>대전광역시 서구 둔산로 20(둔산동 1072)</p>
+                                 </div>
+                                 <div>
+                                    <b>연락처</b>
+                                    <p>042-488-8875</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="widget_container">
+                           <div class="user_widget">
+                              <div class="user_widget_section03">
+                                 <div class="margin_bt20">
+                                    <h4 class="fontSize_20 fontWeight_700">data 1</h4>
+                                    <a href="#">관리</a>
+                                 </div>
+                                 <div class="user_list">
+                                    <div>
+                                       <figure class="thum"></figure>
+                                       이동희
+                                    </div>
+                                    <div>
+                                       <figure class="thum"></figure>
+                                       송문호
+                                    </div>
+                                    <div>
+                                       <figure class="thum"></figure>
+                                       배동열
+                                    </div>
+                                    <div>
+                                       <figure class="thum"></figure>
+                                       이민호
+                                    </div>
+                                    <div>
+                                       <figure class="thum"></figure>
+                                       송강호
+                                    </div>
+                                    <div>
+                                       <figure class="thum"></figure>
+                                       김진우
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+                  <article>
+                     <div class="widget_container">
+                        <h4 class="fontWeight_700 margin_bt20">data 1</h4>
+                        <canvas id="canvas01" style="height: 38.7rem;"></canvas>
+                     </div>
+                     <div class="widget_container">
+                        <h4 class="fontWeight_700 margin_bt20">data 2</h4>
+                        <canvas id="canvas02" class="margin_bt20" style="height: 12.8rem;"></canvas>
+                        <canvas id="canvas03" style="height: 23.9rem;"></canvas>
+                     </div>
+                     <div class="widget_container">
+                        <h4 class="fontWeight_700 margin_bt20">data 3</h4>
+                        <canvas id="canvas04" style="height: 38.7rem;"></canvas>
+                     </div>
+                  </article>
+               </section>
+            </div>
+         </main>
+      </div>
+   </div>
+   <!-- data1 chart -->
+   <script>
+      var ctx02 = document.getElementById("canvas01").getContext('2d');
+
+      var width, height, gradient;
+      
+      function getGradient(ctx, chartArea) {
+         const chartWidth = chartArea.right - chartArea.left;
+         const chartHeight = chartArea.bottom - chartArea.top;
+
+         if (!gradient || width !== chartWidth || height !== chartHeight) {
+            // Create the gradient because this is either the first render
+            // or the size of the chart has changed
+            width = chartWidth;
+            height = chartHeight;
+            gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+            gradient.addColorStop(0, '#426CFF');
+            gradient.addColorStop(1, '#FF5A44');
+         }
+
+         return gradient;
+      }
+
+      var myChart02 = new Chart(ctx02, {
+         type: 'line',
+         data: {
+            labels: ['Sept 2','Sept 7','Sept 12','Sept 17','Sept 22','Sept 27','Oct 2'],
+            datasets: [
+               {
+                  label: '',
+                  data: [50, 20, 70, 5,23, 5, 66],
+                  // borderColor: '#B2CEEE',
+                  borderWidth: 3, 
+                  pointStrokeColor : "#333",
+                  pointRadius:0,
+                  lineTension :  0.5,
+                  borderColor: function(context) {
+                     const chart = context.chart;
+                     const {ctx, chartArea} = chart;
+
+                     if (!chartArea) {
+                        // This case happens on initial chart load
+                        return;
+                     }
+                     return getGradient(ctx, chartArea);
+                  },
+               },
+               {
+                  label: '',
+                  data: [10, 35, 17, 56, 35, 23, 66],
+                  borderColor: '#A2D2FC',
+                  borderWidth: 3, 
+                  pointStrokeColor : "#333",
+                  pointRadius:0,
+                  lineTension :  0.5,
+               },
+            ]
+         },
+         options: {
+            plugins: {
+               legend: {
+                  display: false,
+               },
+               tooltip: { // 기존 툴팁 사용 안 함
+                  enabled: false
+               },
+               animation: { // 차트 애니메이션 사용 안 함 (옵션)
+                  duration: 0,
+               },
+            },
+            pointDot: false,
+            scales: {
+               x: {
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     borderColor:'#D8E0EE',
+                     lineWidth: 0,
+                  },
+               },
+               y: {
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     borderColor:'#fff',
+                  }
+               }
+            },
+         }
+      });
+   </script>
+   <!-- data2 chart -->
+   <script>
+      var ctx02 = document.getElementById("canvas02").getContext('2d');
+
+      var width, height, gradient;
+      
+      function getGradient(ctx, chartArea) {
+         const chartWidth = chartArea.right - chartArea.left;
+         const chartHeight = chartArea.bottom - chartArea.top;
+
+         if (!gradient || width !== chartWidth || height !== chartHeight) {
+            // Create the gradient because this is either the first render
+            // or the size of the chart has changed
+            width = chartWidth;
+            height = chartHeight;
+            gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+            gradient.addColorStop(0, '#426CFF');
+            gradient.addColorStop(1, '#FF5A44');
+         }
+
+         return gradient;
+      }
+
+      var myChart02 = new Chart(ctx02, {
+         type: 'line',
+         data: {
+            labels: ['Sept 2','Sept 7','Sept 12','Sept 17','Sept 22','Sept 27','Oct 2'],
+            datasets: [
+               {
+                  label: '',
+                  data: [50, 20, 70, 5,23, 5, 66],
+                  // borderColor: '#B2CEEE',
+                  borderWidth: 3, 
+                  pointStrokeColor : "#333",
+                  pointRadius:0,
+                  lineTension :  0.5,
+                  borderColor: function(context) {
+                     const chart = context.chart;
+                     const {ctx, chartArea} = chart;
+
+                     if (!chartArea) {
+                        // This case happens on initial chart load
+                        return;
+                     }
+                     return getGradient(ctx, chartArea);
+                  },
+               },
+               {
+                  label: '',
+                  data: [10, 35, 17, 56, 35, 23, 66],
+                  borderColor: '#A2D2FC',
+                  borderWidth: 3, 
+                  pointStrokeColor : "#333",
+                  pointRadius:0,
+                  lineTension :  0.5,
+               },
+            ]
+         },
+         options: {
+            plugins: {
+               legend: {
+                  display: false,
+               },
+               tooltip: { // 기존 툴팁 사용 안 함
+                  enabled: false
+               },
+               animation: { // 차트 애니메이션 사용 안 함 (옵션)
+                  duration: 0,
+               },
+            },
+            pointDot: false,
+            scales: {
+               x: {
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     borderColor:'#D8E0EE',
+                     lineWidth: 0,
+                  },
+               },
+               y: {
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     borderColor:'#fff',
+                  }
+               }
+            },
+         }
+      });
+   
+
+      var ctx03 = document.getElementById("canvas03").getContext('2d');
+
+      var purple_orange_gradient = ctx03.createLinearGradient(0, 0, 0, 250);
+      purple_orange_gradient.addColorStop(0, '#F3EBFF');  
+      purple_orange_gradient.addColorStop(0.3, '#D8BFFF'); 
+      purple_orange_gradient.addColorStop(0.7, '#7897FF'); 
+      purple_orange_gradient.addColorStop(1, '#4592FF');  
+
+      // purple_orange_gradient.addColorStop(0, '#F3EBFF'); 
+      // purple_orange_gradient.addColorStop(0.3, '#D8BFFF'); 
+      // purple_orange_gradient.addColorStop(0.7, '#7897FF'); 
+      // purple_orange_gradient.addColorStop(1, '#4592FF');  
+
+      var myChart03 = new Chart(ctx03, {
+         type: 'bar',
+         data: {
+            labels: ['Sept 3', 'Sept 4', 'Sept 5', 'Sept 6', 'Sept 7', 'Sept 8', 'Sept 9', 'Sept 10', 'Sept 11'],
+            datasets: [{
+               label: '기간수익률',
+               data: [400, 300, 350, 500, 250, 320, 480, 510, 110],
+               borderColor: '#B2CEEE',
+               borderWidth: 0,
+               pointStrokeColor : "#333",
+               backgroundColor: purple_orange_gradient,
+               hoverBackgroundColor: purple_orange_gradient,
+               lineTension: 0,
+            }]
+         },
+         options: {
+            plugins: {
+               legend: {
+                  display: false,
+               },
+               tooltip: { // 기존 툴팁 사용 안 함
+                  enabled: false
+               },
+               animation: { // 차트 애니메이션 사용 안 함 (옵션)
+                  duration: 0,
+               },
+            },
+            scales: {
+               x: {
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     borderColor:'#D8E0EE',
+                     lineWidth: 0,
+                  },
+               },
+               y: {
+                  min: -0.4,
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     borderColor:'#fff',
+                  }
+               }
+            },
+         }
+      });
+
+   </script>
+   <!-- data3 chart -->
+   <script>
+      var ctx04 = document.getElementById("canvas04").getContext('2d');
+
+      var myChart04 = new Chart(ctx04, {
+         type: 'line',
+         data: {
+            labels: ['Sept 2','Sept 7','Sept 12','Sept 17','Sept 22','Sept 27','Oct 2'],
+            datasets: [
+               {
+                  label: '',
+                  data: [50, 20, 70, 5,23, 5, 66],
+                  fill: true,
+                  backgroundColor:'rgba(59,189,196,0.2)',
+                  borderColor: '#3BBDC4',
+                  borderWidth: 2, 
+                  pointStrokeColor : "#333",
+                  pointRadius:0,
+                  lineTension :  0.5,
+               },
+               {
+                  label: '',
+                  data: [10, 35, 17, 56, 35, 23, 66],
+                  fill: true,
+                  backgroundColor: 'rgba(69,146,255,0.2)',
+                  borderColor: '#4592FF',
+                  borderWidth: 2, 
+                  pointStrokeColor : "#333",
+                  pointRadius:0,
+                  lineTension :  0.5,
+               },
+            ]
+         },
+         options: {
+            plugins: {
+               legend: {
+                  display: false,
+               },
+               tooltip: { // 기존 툴팁 사용 안 함
+                  enabled: false
+               },
+               animation: { // 차트 애니메이션 사용 안 함 (옵션)
+                  duration: 0,
+               },
+            },
+            pointDot: false,
+            scales: {
+               x: {
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     color:'#B7D5EA',
+                     borderColor:'#fff',
+                     lineWidth: 2,
+                  },
+               },
+               y: {
+                  min: -0.4,
+                  display: true,
+                  ticks: {
+                     color: '#707F9C',
+                     font: {
+                        size: 15
+                     },
+                     display: true,
+                  },
+                  grid: {
+                     // borderColor:'#fff',
+                     lineWidth: 0,
+                  },
+               }
+            },
+         }
+      });
+   </script>
+</body>
+</html> 

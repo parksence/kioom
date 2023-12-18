@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
+   <title>한국한의학연구원</title>
+   <meta name="description" content="">
+   <meta name="keywords" content="">
+   <!-- favicon -->
+   <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+   <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+   <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+   <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+   <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+   <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+   <link rel="manifest" href="/img/favicon/manifest.json">
+   <meta name="msapplication-TileColor" content="#ffffff">
+   <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+   <meta name="theme-color" content="#ffffff">
+   <!-- css -->
+   <link rel="stylesheet" href="/css/mixin.css">
+   <!-- icon font -->
+   <link rel="stylesheet" href="/css/iconFont/XEIcon-2.2.0/xeicon.min.css">
+   <!-- plugIn -->
+   <script src="/js/libs/jquery/jquery-3.2.1.min.js"></script>
+   <!-- slick slide -->
+   <link rel="stylesheet" href="/js/libs/slick-1.8.1/slick/slick.css">
+   <script src="/js/libs/slick-1.8.1/slick/slick.min.js"></script>
+   <!-- js -->
+   <script src="/js/layout.js"></script>
+   <script src="/js/fileUpload.js"></script>
+   <script src="/js/modal.js"></script>
+   <script src="/js/util.js"></script>
+</head>
+
+<body>
+   <div id="wrap">
+      <aside id="aside">
+         <h1 class="logo">
+            <a href="/">
+               <img src="/img/common/logo.png" alt="한국한의학연구원">
+            </a>
+         </h1>
+         <ul class="">
+            <li class="depth1">
+               <a href="#" class="depth1_title on active">사용자관리</a>
+               <ul class="depth2_wrap">
+                  <li class="depth2">
+                     <a href="/user/hospital" class="depth2_title active">병원 관리</a>
+                  </li>
+                  <li class="depth2">
+                     <a href="/user/patient" class="depth2_title">환자 관리</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="depth1">
+               <a href="/data/manage" class="depth1_title">데이터관리</a>
+            </li>
+            <li class="depth1">
+               <a href="/monitoring/log" class="depth1_title">모니터링</a>
+            </li>
+         </ul>
+         <button class="siteMap-btn">
+            <span class="siteMap-top"></span>
+            <span class="siteMap-mid"></span>
+            <span class="siteMap-bt"></span>
+         </button>
+      </aside>
+      <div id="content_body">
+         <header id="header">
+            <div class="container">
+               <div class="clear-fix">
+                  <h3 class="page_title">
+                     병원 관리
+                  </h3>
+                  <div class="controller">
+                     <div class="log_menu before">
+                        <p>
+                           <a href="/user/account" id="user_name">관리자</a>님 안녕하세요.
+                        </p>
+                        <button type="button">로그아웃</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <main id="main">
+            <div class="container">
+               <section>
+                  <article>
+                     <div class="subContainer padding30">
+                        <div class="sub_content_section">
+                           <form action="">
+                              <div class="content_box">
+                                 <section class="search_form_section">
+                                    <div class="article_row">
+                                       <article class="article_col">
+                                          <b class="article_title">
+                                             <label for="search">검색</label>
+                                          </b>
+                                          <div class="article_content">
+                                             <span class="input_wrap col2">
+                                                <input type="text" id="search" name="" placeholder="검색어를 입력해주세요">
+                                                <button class="btn style01 large input_w120">검색</button>
+                                             </span>
+                                          </div>
+                                       </article>
+                                    </div>
+                                 </section>
+                              </div> 
+                           </form>
+                        </div>
+                     </div>
+                  </article>
+                  <article>
+                     <div class="subContainer">
+                        <div class="sub_content_section">
+                           <span class="total_text">Total: 10건</span>
+                           <div class="table_wrap" data-wrap="checkbox_body">
+                              <table class="custom_table">
+                                 <colgroup>
+                                    <col class="w5">
+                                    <col class="w5">
+                                    <col>
+                                    <col class="w20">
+                                    <col class="w15">
+                                    <col class="w30">
+                                    <col>
+                                    <col class="w5">
+                                 </colgroup>
+                                 <thead>
+                                    <tr>
+                                       <th scope="col">번호</th>
+                                       <th scope="col">
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck_all" data-checkbox="all_check">
+                                             <label for="ck_all" class="padding_0"></label>
+                                          </span>
+                                       </th>
+                                       <th scope="col">계정</th>
+                                       <th scope="col">병원명</th>
+                                       <th scope="col">병원연락처</th>
+                                       <th scope="col">위치</th>
+                                       <th scope="col">담당자</th>
+                                       <th scope="col">관리</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck1" name="">
+                                             <label for="ck1" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>jitoon420</td>
+                                       <td>코코로한의원</td>
+                                       <td>042-476-7675</td>
+                                       <td>대전광역시 서구 둔산2동</td>
+                                       <td>김태윤</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+                                    <tr>
+                                       <td>2</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck2" name="">
+                                             <label for="ck2" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>sejong0227</td>
+                                       <td>한마음한의원</td>
+                                       <td>042-488-8875</td>
+                                       <td>대전광역시 서구 둔산로 20(둔산동 1072)</td>
+                                       <td>김진혁</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+                                    <tr>
+                                       <td>3</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck3" name="">
+                                             <label for="ck3" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>sjfire119</td>
+                                       <td>서울한의원</td>
+                                       <td>042-226-9922</td>
+                                       <td>대전 동구 태전로 6</td>
+                                       <td>이원중</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+
+                                    <tr>
+                                       <td>4</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck4" name="">
+                                             <label for="ck4" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>qodlduf010</td>
+                                       <td>미라온한의원 강북</td>
+                                       <td>02-945-8575</td>
+                                       <td>서울 강북구 도봉로 167 아름빌딩 6층</td>
+                                       <td>김효연</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+                                    <tr>
+                                       <td>5</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck5" name="">
+                                             <label for="ck5" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>miracle089</td>
+                                       <td>도손한의원 노원</td>
+                                       <td>0507-1426-1086</td>
+                                       <td>서울 노원구 노해로 494 제5층 502호</td>
+                                       <td>이준호</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+                                    <tr>
+                                       <td>6</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck6" name="">
+                                             <label for="ck6" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>sunmoon105</td>
+                                       <td>이음채한의원 종로</td>
+                                       <td>0507-1369-7584</td>
+                                       <td>서울 종로구 종로 111 2층 이음채한의원</td>
+                                       <td>배경옥</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+                                    <tr>
+                                       <td>7</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck7" name="">
+                                             <label for="ck7" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>gusdid9125</td>
+                                       <td>하늘마음한의원 울산</td>
+                                       <td>052-269-8646</td>
+                                       <td>울산 남구 삼산로 273 삼산타워 11층</td>
+                                       <td>차언석</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+                                    <tr>
+                                       <td>8</td>
+                                       <td>
+                                          <span class="custom_checkbox">
+                                             <input type="checkbox" id="ck8" name="">
+                                             <label for="ck8" class="padding_0"></label>
+                                          </span>
+                                       </td>
+                                       <td>tini8ge</td>
+                                       <td>명륜한의원 동래점</td>
+                                       <td>0507-1432-0141</td>
+                                       <td>부산 동래구 명륜로 104-1 2층</td>
+                                       <td>류승민</td>
+                                       <td><a href="/user/hospital" class="status type06">관리</a></td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <div class="btn_wrap space_between">
+                              <button 
+                                 class="btn style02 xlarge" 
+                                 onclick="modalOpen(this, resetFileList('files'))" 
+                                 data-modal="modal_type01">
+                                 파일 업로드
+                              </button>
+                              <div class="btn_wrap justify_start">
+                                 <button class="btn style06 xlarge" type="button">삭제</button>
+                                 <button class="btn style01 xlarge" type="button" onclick="window.location.href='/user/account'">등록</button>
+                              </div>
+                           </div>
+                           <div class="pagination">
+                              <ul>
+                                 <li class="first_page">
+                                    <a href="#"></a>
+                                 </li>
+                                 <li class="prev_page">
+                                    <a href="#"></a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#">
+                                       1
+                                    </a>
+                                 </li>
+                                 <li class="active">
+                                    <a href="#">
+                                       2
+                                    </a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#">
+                                       3
+                                    </a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#">
+                                       4
+                                    </a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#">
+                                       5
+                                    </a>
+                                 </li>
+                                 <li class="next_page">
+                                    <a href="#"></a>
+                                 </li>
+                                 <li class="last_page">
+                                    <a href="#"></a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+               </section>
+            </div>
+         </main>
+      </div>
+      <!-- modal -->
+      <div class="modal modal_type01 modal_bg file_upload">
+         <div class="modal_container" style="max-width:90rem;">
+            <div class="modal_header">
+               <h5 class="modal_title">
+                  파일 업로드 
+                  <span>한국한의학연구원</span>
+               </h5>
+               <button class="btn_modal_close modal_close icon_font" data-modal="modal_type01"> 
+                  <i class="xi-close"></i> 
+                  <span class="sr-only">닫기</span>
+               </button>
+            </div>
+            <div class="modal_body">
+               <div id="drop_zone">
+                  <div class="upload_before">
+                     <p><span>업로드할 파일 놓기</span><br> 또는 </p>
+                  </div>
+                  <div>
+                     <input 
+                     id="files" 
+                     class="hidden" 
+                     name="files" 
+                     onchange="asyncFileNameView(this, 'arr_file_list');" 
+                     type="file" 
+                     accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                     multiple>
+                     <label for="files" class="btn dis_inlineBlock large style02">파일 선택</label>
+                  </div>
+                  <div id="drag_over" style="display: none;"></div>
+               </div>
+               <div class="upload_data">
+                  <span>지원 파일 형식:</span>
+                  <ul class="file_list">
+                     <li class="file_item xls">XLS</li>
+                     <li class="file_item csv">CSV</li>
+                  </ul>
+                  <span>(Maximum file size: 1 GB)</span>
+               </div>
+               <div class="file_name" data-filewrapper="files">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

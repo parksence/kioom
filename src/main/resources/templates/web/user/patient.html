@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
+   <title>한국한의학연구원</title>
+   <meta name="description" content="">
+   <meta name="keywords" content="">
+   <!-- favicon -->
+   <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+   <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+   <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+   <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+   <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+   <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+   <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+   <link rel="manifest" href="/img/favicon/manifest.json">
+   <meta name="msapplication-TileColor" content="#ffffff">
+   <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+   <meta name="theme-color" content="#ffffff">
+   <!-- css -->
+   <link rel="stylesheet" href="/css/mixin.css">
+   <!-- icon font -->
+   <link rel="stylesheet" href="/css/iconFont/XEIcon-2.2.0/xeicon.min.css">
+   <!-- plugIn -->
+   <script src="/js/libs/jquery/jquery-3.2.1.min.js"></script>
+   <script src="/js/libs/jquery-ui/jquery-ui.min.js"></script>
+   <!-- slick slide -->
+   <link rel="stylesheet" href="/js/libs/slick-1.8.1/slick/slick.css">
+   <script src="/js/libs/slick-1.8.1/slick/slick.min.js"></script>
+   <script src="/js/libs/chart.js/Chart3.7.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+   <!-- js -->
+   <script src="/js/layout.js"></script>
+   <script src="/js/util.js"></script>
+</head>
+<body>
+   <div id="wrap">
+      <aside id="aside">
+         <h1 class="logo">
+            <a href="/">
+               <img src="/img/common/logo.png" alt="한국한의학연구원">
+            </a>
+         </h1>
+         <ul class="">
+            <li class="depth1">
+               <a href="#" class="depth1_title on active">사용자관리</a>
+               <ul class="depth2_wrap">
+                  <li class="depth2">
+                     <a href="/user/hospital" class="depth2_title">병원 관리</a>
+                  </li>
+                  <li class="depth2">
+                     <a href="/user/patient" class="depth2_title active">환자 관리</a>
+                  </li>
+               </ul>
+            </li>
+            <li class="depth1">
+               <a href="/data/manage" class="depth1_title">데이터관리</a>
+            </li>
+            <li class="depth1">
+               <a href="/monitoring/log" class="depth1_title">모니터링</a>
+            </li>
+         </ul>
+         <button class="siteMap-btn">
+            <span class="siteMap-top"></span>
+            <span class="siteMap-mid"></span>
+            <span class="siteMap-bt"></span>
+         </button>
+      </aside>
+      <div id="content_body">
+         <header id="header">
+            <div class="container">
+               <div class="clear-fix">
+                  <h3 class="page_title">환자관리</h3>
+                  <div class="controller">
+                     <div class="log_menu before">
+                        <p>
+                           <a href="/user/account" id="user_name">관리자</a>님 안녕하세요.
+                        </p>
+                        <button type="button">로그아웃</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <main id="main">
+            <div class="container">
+               <section class="widget_section type02">
+                  <article>
+                     <div class="left">
+                        <div class="widget_container">
+                           <div class="user_info">
+                              <div class="user_info_section01">
+                                 <h4>
+                                    이동희
+                                    <span>42세, 남</span>
+                                 </h4>
+                                 <a href="#">환자관리</a>
+                              </div> 
+                              <div class="user_info_section02">
+                                 <ul>
+                                    <li>
+                                       <b>몸무게</b>
+                                       <span>72kg</span>
+                                    </li>
+                                    <li>
+                                       <b>BMI</b>
+                                       <span>32</span>
+                                    </li>
+                                    <li>
+                                       <b>혈압</b>
+                                       <span>178/85</span>
+                                    </li>
+                                 </ul>
+                                 <ul>
+                                    <li>
+                                       <b>심혈관 질환 이력</b>
+                                       <span>고혈압, 심장질환, 부정맥류, 당류</span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="user_data margin_top30">
+                              <h4 class="fontWeight_700 margin_bt10">생체 정보 기록</h4>
+                              <div class="user_body_data">
+                                 <ul class="body_data_thead">
+                                    <li>번호</li>
+                                    <li>일자</li>
+                                    <li>구분</li>
+                                 </ul>
+                                 <ul class="body_data_tbdoy">
+                                    <li>
+                                       <button type="button">
+                                          <span>1</span>
+                                          <span>2023-02-03</span>
+                                          <span>일상 기록</span>
+                                       </button>
+                                    </li>
+                                    <li>
+                                       <button class="active" type="button">
+                                          <span>2</span>
+                                          <span>2023-09-27</span>
+                                          <span>병원 방문</span>
+                                       </button>
+                                    </li>
+                                    <li>
+                                       <button type="button">
+                                          <span>3</span>
+                                          <span>2023-10-03</span>
+                                          <span>병원 방문</span>
+                                       </button>
+                                    </li>
+                                    <li>
+                                       <button type="button">
+                                          <span>4</span>
+                                          <span>2023-10-15</span>
+                                          <span>병원 방문</span>
+                                       </button>
+                                    </li>
+                                    <li>
+                                       <button type="button">
+                                          <span>5</span>
+                                          <span>2023-10-22</span>
+                                          <span>일상 기록</span>
+                                       </button>
+                                    </li>
+                                    <li>
+                                       <button type="button">
+                                          <span>6</span>
+                                          <span>2023-11-05</span>
+                                          <span>병원 방문</span>
+                                       </button>
+                                    </li>
+                                    <li>
+                                       <button type="button">
+                                          <span>7</span>
+                                          <span>2023-11-26</span>
+                                          <span>일상 기록</span>
+                                       </button>
+                                    </li>
+                                    <li>
+                                       <button type="button">
+                                          <span>8</span>
+                                          <span>2023-12-01</span>
+                                          <span>병원 방문</span>
+                                       </button>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="right">
+                        <div class="widget_container">
+                           <!-- 데이터 없을때 -->
+                           <!-- <div class="none_data">생체 정보 기록을 선택해주세요</div> -->
+                           <!-- 데이터 있을때 -->
+                           <div class="user_data_section01">
+                              <ul>
+                                 <li>
+                                    <b>일자</b>
+                                    <span>2023-09-27</span>
+                                 </li>
+                                 <li>
+                                    <b>구분</b>
+                                    <span>병원 방문</span>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="user_data_section02">
+                              <div class="user_data_article">
+                                 <div>
+                                    <h4 class="fontWeight_700 margin_bt10">생체 정보 기록</h4>
+                                    <div class="table_wrap">
+                                       <table class="custom_table fixed" style="min-width:100%;">
+                                          <thead>
+                                             <tr>
+                                                <th scope="col">불안장애 점수</th>
+                                                <th scope="col">변증</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>50</td>
+                                                <td>기허</td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                                 <div>
+                                    <h4 class="fontWeight_700 margin_bt10">병원 설진</h4>
+                                    <div class="table_wrap">
+                                       <table class="custom_table fixed" style="min-width:100%;">
+                                          <thead>
+                                             <tr>
+                                                <th scope="col">설색</th>
+                                                <th scope="col">설태</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>백색</td>
+                                                <td>백</td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="user_data_article">
+                                 <div>
+                                    <h4 class="fontWeight_700 margin_bt10">병원 맥진</h4>
+                                    <div class="table_wrap">
+                                       <table class="custom_table fixed">
+                                          <thead>
+                                             <tr>
+                                                <th scope="col">맥력지수</th>
+                                                <th scope="col">맥긴지수</th>
+                                                <th scope="col">맥심지수</th>
+                                                <th scope="col">맥폭지수</th>
+                                                <th scope="col">맥첨지수</th>
+                                                <th scope="col">맥률지수</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>0.1</td>
+                                                <td>0.1</td>
+                                                <td>0.1</td>
+                                                <td>0.1</td>
+                                                <td>0.1</td>
+                                                <td>0.1</td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div>
+                                 <div class="user_data_img_wrap">
+                                    <img src="/img/common/sub_test_img.png" alt="">
+                                 </div>
+                              </div>
+                              <div class="user_data_article">
+                                 <div>
+                                    <h4 class="fontWeight_700 margin_bt10">일상 맥</h4>
+                                    <div class="table_wrap">
+                                       <table class="custom_table fixed" style="min-width:100%;">
+                                          <thead>
+                                             <tr>
+                                                <th scope="col">불규칙 심박동</th>
+                                                <th scope="col">불규칙 맥파형</th>
+                                                <th scope="col">빈도</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>서맥</td>
+                                                <td>Type E</td>
+                                                <td>B 3회, E 5회</td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="user_data_article">
+                                 <div>
+                                    <h4 class="fontWeight_700 margin_bt10">일상 경계정충 설문</h4>
+                                    <div class="table_wrap">
+                                       <table class="custom_table fixed">
+                                          <thead>
+                                             <tr>
+                                                <th scope="col">불안 정도</th>
+                                                <th scope="col">감정 상태</th>
+                                                <th scope="col">강도</th>
+                                                <th scope="col">지속시간</th>
+                                                <th scope="col">신체요인</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>중</td>
+                                                <td>우울</td>
+                                                <td>평균 1.2</td>
+                                                <td>평균 10.7분</td>
+                                                <td>불면/저녁시간</td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div>
+                                 <h4 class="fontWeight_700 margin_bt10">맥파</h4>
+                                 <div class="user_data_img_wrap">
+                                    <img src="/img/common/sub_test_img.png" alt="">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+               </section>
+            </div>
+         </main>
+      </div>
+   </div>
+</body>
+</html> 
