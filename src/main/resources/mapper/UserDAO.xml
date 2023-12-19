@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codex.kioom.dao.UserDAO">
+
+	<select id="userChk" parameterType="map" resultType="map">
+		SELECT H_ID
+		     , EMAIL
+		     , H_NAME
+		     , H_LOCATION
+		     , H_MANAGER
+		     , H_PHONE
+		     , H_TEL
+		     , H_FAX
+		  FROM hospital_m
+		 WHERE H_ID = #{username}
+		   AND H_PW = #{userPw};
+	</select>
+
+<!--    &lt;!&ndash; 로그인한 사용자 정보 &ndash;&gt;-->
+<!--	<select id="findByUserID" resultType="User" parameterType="string">-->
+<!--		SELECT U.USER_CODE-->
+<!--			 , U.REG_DATE-->
+<!--			 , U.NAME-->
+<!--			 , U.AGENCY-->
+<!--			 , U.DEPARTMENT-->
+<!--			 , U.EMAIL-->
+<!--			 , U.USER_ID-->
+<!--			 , U.USER_PW-->
+<!--			 , U.ROLE_CODE-->
+<!--			 , IFNULL(U.HPID, '') AS HPID-->
+<!--			 , IFNULL(CONCAT(U.TEL_NO1, U.TEL_NO2, U.TEL_NO3), '') AS TEL_NO-->
+<!--		     , IFNULL(U.TEL_NO1, '') AS TEL_NO1-->
+<!--		     , IFNULL(U.TEL_NO2, '') AS TEL_NO2-->
+<!--		     , IFNULL(U.TEL_NO3, '') AS TEL_NO3-->
+<!--			 , IFNULL(U.POSITION, '') AS POSITION-->
+<!--			 , IFNULL(U.SEUNGIN_YN, '0') AS SEUNGIN_YN-->
+<!--			 , R.ROLE_NAME-->
+<!--		  FROM test.USER AS U-->
+<!--		  LEFT-->
+<!--		  JOIN test.ROLE AS R-->
+<!--		    ON U.ROLE_CODE = R.ROLE_CODE-->
+<!--		 WHERE U.USER_ID = #{username}-->
+<!--           AND U.SEUNGIN_YN = '1'-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 사용자 리스트 조회 &ndash;&gt;-->
+<!--	<select id="userList" parameterType="hashMap" resultType="map">-->
+<!--		/* 사용자 목록 조회 */-->
+<!--		SELECT U.USER_CODE-->
+<!--		, CONCAT(DATE_FORMAT(U.REG_DATE, '%Y. %c. %e. ') , IF(DATE_FORMAT(U.REG_DATE, '%p') = 'AM', ' 오전 ', ' 오후 '), DATE_FORMAT(U.REG_DATE, '%l:%i:%s')) AS REG_DATE-->
+<!--		, CASE WHEN CHAR_LENGTH(U.NAME) >= 3 THEN CONCAT(LEFT(U.NAME, 1), REPEAT('*', CHAR_LENGTH(U.NAME) - 2), RIGHT(U.NAME, 1))-->
+<!--		       ELSE CONCAT(LEFT(U.NAME, CHAR_LENGTH(U.NAME) - 1), '*')-->
+<!--		  END AS NAME-->
+<!--		, U.AGENCY-->
+<!--		, U.DEPARTMENT-->
+<!--		, U.EMAIL-->
+<!--		, U.USER_ID-->
+<!--		, U.USER_PW-->
+<!--		, U.ROLE_CODE-->
+<!--		, IFNULL(U.HPID, '') AS HPID-->
+<!--	    , U.TEL_NO1-->
+<!--		, REPEAT('*', LENGTH(U.TEL_NO2)) as TEL_NO2-->
+<!--		, U.TEL_NO3-->
+<!--		, IFNULL(U.POSITION, '') AS POSITION-->
+<!--		, U.SEUNGIN_YN-->
+<!--		, R.ROLE_NAME-->
+<!--		FROM test.USER AS U-->
+<!--		LEFT-->
+<!--		JOIN test.ROLE AS R-->
+<!--		ON U.ROLE_CODE = R.ROLE_CODE-->
+<!--		<where>-->
+<!--			<if test="userId != null and userId != ''">-->
+<!--				AND U.USER_ID != #{userId}-->
+<!--			</if>-->
+<!--			<if test="searchKey != null and searchKey != ''">-->
+<!--				AND (U.NAME LIKE CONCAT('%', #{searchKey}, '%')-->
+<!--				 OR U.USER_ID LIKE CONCAT('%', #{searchKey}, '%'))-->
+<!--			</if>-->
+<!--			<if test="seungin_yn != null and seungin_yn != ''">-->
+<!--				AND SEUNGIN_YN = #{seungin_yn}-->
+<!--			</if>-->
+<!--		</where>-->
+<!--		ORDER BY REG_DATE DESC LIMIT #{OFFSET}, #{ROW_COUNT}-->
+<!--	</select>-->
+
+<!--	<select id="idCheck" parameterType="hashMap" resultType="int">-->
+<!--		SELECT COUNT(*) AS ID_YN-->
+<!--		FROM test.USER-->
+<!--		WHERE EMAIL = #{email}-->
+<!--		<if test="user_name != null and user_name != ''">-->
+<!--		  AND NAME = #{user_name}-->
+<!--		</if>-->
+<!--		<if test="user_id != null and user_id != ''">-->
+<!--		  AND USER_ID = #{user_id}-->
+<!--		</if>-->
+<!--	</select>-->
+
+<!--	<select id="findId" parameterType="hashMap" resultType="String">-->
+<!--		SELECT USER_ID-->
+<!--		FROM test.USER-->
+<!--		WHERE NAME = #{user_name}-->
+<!--		  AND EMAIL = CONCAT(#{user_email_id}, '@', #{user_email_address})-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 사용자 총원 조회 &ndash;&gt;-->
+<!--	<select id="userListCnt" parameterType="hashMap" resultType="int">-->
+<!--		SELECT COUNT(*)-->
+<!--		  FROM test.USER-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 사용자 관리 총원 조회 &ndash;&gt;-->
+<!--	<select id="userManageListCnt" parameterType="hashMap" resultType="int">-->
+<!--		/* 사용자 관리 총원수  */-->
+<!--		SELECT COUNT(*)-->
+<!--		FROM test.USER AS U-->
+<!--		LEFT-->
+<!--		JOIN test.ROLE AS R-->
+<!--		ON U.ROLE_CODE = R.ROLE_CODE-->
+<!--		<where>-->
+<!--			<if test="userId != null and userId != ''">-->
+<!--				AND U.USER_ID != #{userId}-->
+<!--			</if>-->
+<!--			<if test="searchKey != null and searchKey != ''">-->
+<!--				AND (U.NAME LIKE CONCAT('%', #{searchKey}, '%')-->
+<!--				OR U.USER_ID LIKE CONCAT('%', #{searchKey}, '%'))-->
+<!--			</if>-->
+<!--			<if test="seungin_yn != null and seungin_yn != ''">-->
+<!--				AND SEUNGIN_YN = #{seungin_yn}-->
+<!--			</if>-->
+<!--		</where>-->
+<!--	</select>-->
+
+<!--	<select id="getBoard" resultType="map">-->
+<!--		SELECT -->
+<!--			ID, -->
+<!--			BOARD_ID, -->
+<!--			USER_ID, -->
+<!--			REG_DATE, -->
+<!--			ARTICLE_TITLE, -->
+<!--			ARTICLE_BODY, -->
+<!--			ARTICLE_TYPE-->
+<!--	 	FROM -->
+<!--	 		BOARD_NOTICE_ARTICLE;-->
+<!--	</select>-->
+
+<!--	<select id="getNoticeBoard" resultType="map">-->
+<!--		SELECT -->
+<!--			ID, -->
+<!--			BOARD_ID, -->
+<!--			USER_ID, -->
+<!--			REG_DATE, -->
+<!--			ARTICLE_TITLE, -->
+<!--			ARTICLE_BODY, -->
+<!--			ARTICLE_TYPE-->
+<!--	 	FROM -->
+<!--	 		BOARD_NOTICE_ARTICLE-->
+<!-- 		WHERE BOARD_ID = 1;-->
+<!--	</select>-->
+
+<!--	<select id="getUserList" resultType="map">-->
+<!--		SELECT * FROM `USER` ORDER BY USER_CODE DESC;-->
+<!--	</select>-->
+
+<!--	<select id="findById" parameterType="string" resultType="int">-->
+<!--		SELECT COUNT(*) FROM `USER` WHERE USER_ID = #{USER_ID}; -->
+<!--	</select>-->
+
+<!--	<update id="modifyUser" parameterType="map">-->
+<!--		/* 사용자 정보 수정 */-->
+<!--		UPDATE test.USER-->
+<!--		SET NAME = #{userName},-->
+<!--			EMAIL = CONCAT(#{userEmail}, '@', #{emailDomain}),-->
+<!--			HPID = (SELECT HPID FROM test.hospital WHERE DUTYNAME = #{userAgency}),-->
+<!--			AGENCY = #{userAgency},-->
+<!--			DEPARTMENT = #{userDepartment},-->
+<!--			POSITION = #{userPosition},-->
+<!--			TEL_NO1 = #{user_phone_f},-->
+<!--			TEL_NO2 = #{user_phone_m},-->
+<!--			TEL_NO3 = #{user_phone_l},-->
+<!--			ROLE_CODE = #{userRole}-->
+<!--		WHERE USER_CODE = #{user_code}-->
+<!--	</update>-->
+
+<!--	&lt;!&ndash; 관리자 사용자 등록 &ndash;&gt;-->
+<!--	<insert id="insertUserList" parameterType="map">-->
+<!--		INSERT INTO test.USER(REG_DATE, NAME, AGENCY, DEPARTMENT, EMAIL, USER_ID, USER_PW, ROLE_CODE, HPID, TEL_NO1, TEL_NO2, TEL_NO3, POSITION, SEUNGIN_YN)-->
+<!--		VALUES-->
+<!--		( CURRENT_TIMESTAMP-->
+<!--		, #{userName}-->
+<!--		, #{userAgency}-->
+<!--		, #{userDepartment}-->
+<!--		, CONCAT(#{userEmail}, '@', #{emailDomain})-->
+<!--		, #{userId}-->
+<!--		, #{userPw}-->
+<!--		, #{userRole}-->
+<!--		, (SELECT HPID FROM test.HOSPITAL WHERE DUTYNAME = #{userAgency})-->
+<!--		, #{user_phone_f}-->
+<!--		, #{user_phone_m}-->
+<!--		, #{user_phone_l}-->
+<!--		, #{userPosition}-->
+<!--		, '0'-->
+<!--		);-->
+<!--	</insert>-->
+
+<!--	&lt;!&ndash; IP 접근 대역 추가 &ndash;&gt;-->
+<!--	<insert id="insertIp" parameterType="map">-->
+<!--		INSERT INTO test.IP_MANAGE(USER_ID, ACCESS_IP, BIGO, REG_DATE)-->
+<!--		VALUES-->
+<!--		( #{user_id}-->
+<!--		, CONCAT(#{access_ip_1}, '.', #{access_ip_2}, '.', #{access_ip_3}, '.', #{access_ip_4})-->
+<!--		, #{bigo}-->
+<!--		, CURRENT_TIMESTAMP-->
+<!--		)-->
+<!--	</insert>-->
+
+<!--	&lt;!&ndash; 사용자 등록 &ndash;&gt;-->
+<!--	<insert id="insertUser" parameterType="map">-->
+<!--		INSERT INTO test.USER(REG_DATE, NAME, AGENCY, DEPARTMENT, EMAIL, USER_ID, USER_PW, ROLE_CODE, HPID, TEL_NO1, TEL_NO2, TEL_NO3, POSITION, SEUNGIN_YN)-->
+<!--		VALUES-->
+<!--			( CURRENT_TIMESTAMP-->
+<!--			, #{user_name}-->
+<!--			, #{user_blng}-->
+<!--			, #{user_dept}-->
+<!--			, CONCAT(#{user_email_id}, '@', #{user_email_address})-->
+<!--			, #{user_id}-->
+<!--			, #{userPw}-->
+<!--			, 1-->
+<!--			, (SELECT HPID FROM test.HOSPITAL WHERE DUTYNAME = #{user_blng})-->
+<!--			, #{user_phone_f}-->
+<!--			, #{user_phone_m}-->
+<!--			, #{user_phone_l}-->
+<!--			, #{user_position}-->
+<!--			, '0'-->
+<!--			);-->
+<!--	</insert>-->
+
+<!--	&lt;!&ndash; 사용자 비밀번호 변경 &ndash;&gt;-->
+<!--	<update id="updatePassword" parameterType="map">-->
+<!--		UPDATE test.USER-->
+<!--		   SET USER_PW = #{userPw}-->
+<!--		 WHERE USER_ID = #{user_id}-->
+<!--		   AND EMAIL = #{email}-->
+<!--	</update>-->
+
+<!--	<select id="findByUserCode" parameterType="string" resultType="int">-->
+<!--		SELECT COUNT(*) FROM `USER` WHERE ID = #{USER_CODE};-->
+<!--	</select>-->
+
+<!--	<delete id="removeUser" parameterType="string">-->
+<!--		DELETE FROM `USER` WHERE USER_CODE = #{USER_CODE};-->
+<!--	</delete>-->
+
+<!--	<select id="findByUser" parameterType="string" resultType="map">-->
+<!--		SELECT * FROM `USER` WHERE ID = #{USER_CODE};-->
+<!--	</select>-->
+
+<!--	<update id="userAccountStop" parameterType="map">-->
+<!--		UPDATE `USER` SET USER_TYPE = 0 WHERE ID = #{USER_CODE}-->
+<!--	</update>-->
+
+<!--	<update id="userAccountStart" parameterType="map">-->
+<!--		UPDATE `USER` SET USER_TYPE = 1 WHERE ID = #{USER_CODE}-->
+<!--	</update>-->
+
+<!--	<select id="findByBookmarkForUser" parameterType="map" resultType="map">-->
+<!--		select * from BOOK_MARK where USER_CODE = #{userCode} and HOSPITAL_HPID = #{hpid};-->
+<!--	</select>-->
+<!--	-->
+<!--	<insert id="bookmark" parameterType="map">-->
+<!--		insert into BOOK_MARK SET USER_CODE = #{userCode}, HOSPITAL_HPID = #{hpid};-->
+<!--	</insert>-->
+<!--	-->
+<!--	<delete id="bookmarkClear" parameterType="map">-->
+<!--		delete from BOOK_MARK WHERE USER_CODE = #{userCode} and HOSPITAL_HPID = #{hpid}; -->
+<!--		-->
+<!--	</delete>-->
+<!--	-->
+<!--	<select id="getUserBookMarkData" parameterType="map" resultType="map">-->
+<!--		select -->
+<!--			h.HPID,-->
+<!--			h.AREA-->
+<!--		from -->
+<!--			book_mark as b-->
+<!--		join hospital as h-->
+<!--			on b.HOSPITAL_HPID = h.HPID -->
+<!--		where USER_CODE = #{userCode};-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash;-->
+<!--	사용자 아이디 중복 검사-->
+<!--	0 : 사용가능-->
+<!--	1 : 사용 불가능-->
+<!--	&ndash;&gt;-->
+<!--	<select id="getUserIdYn" parameterType="hashMap" resultType="int">-->
+<!--		SELECT COUNT(*) AS USER_ID_YN-->
+<!--		  FROM test.USER-->
+<!--		 WHERE USER_ID = #{user_id}-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 소속 데이터 조회 &ndash;&gt;-->
+<!--	<select id="getAgencyList" resultType="map">-->
+<!--		/* 소속 병원, HPID 조회*/-->
+<!--		SELECT IFNULL(DUTYNAME, '') AS AGENCY,-->
+<!--			   IFNULL(HPID, '') AS HPID-->
+<!--		  FROM test.HOSPITAL-->
+<!--		 WHERE HPID IN ('A1800441', 'A1800417', '99999999', '00000000')-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 권한 리스트 조회 &ndash;&gt;-->
+<!--	<select id="getRoleList" resultType="map">-->
+<!--		SELECT-->
+<!--		    ROLE_CODE-->
+<!--		 	,ROLE_NAME-->
+<!--		  FROM test.ROLE-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 사용자 리스트 일괄 거절 &ndash;&gt;-->
+<!--	<update id="updateAllNo" parameterType="map">-->
+<!--		UPDATE test.USER-->
+<!--		   SET SEUNGIN_YN = '2'-->
+<!--		 WHERE USER_ID = #{user_id}-->
+<!--	</update>-->
+
+<!--	&lt;!&ndash; 사용자 리스트 일괄 승인 &ndash;&gt;-->
+<!--	<update id="updateAllYes" parameterType="map">-->
+<!--		UPDATE test.USER-->
+<!--		   SET SEUNGIN_YN = '1'-->
+<!--		 WHERE USER_ID = #{user_id}-->
+<!--	</update>-->
+
+<!--	&lt;!&ndash; 사용자 리스트 수정 &ndash;&gt;-->
+<!--	<update id="updateUserList" parameterType="map">-->
+<!--		UPDATE test.USER-->
+<!--		   SET SEUNGIN_YN = #{seungin_yn}-->
+<!--		     , ROLE_CODE = #{role_cd}-->
+<!--		 WHERE USER_ID = #{user_id}-->
+<!--	</update>-->
+
+<!--	&lt;!&ndash; 사용자 리스트 삭제 &ndash;&gt;-->
+<!--	<delete id="deleteUserList" parameterType="map">-->
+<!--		DELETE FROM test.USER WHERE USER_ID = #{user_id}-->
+<!--	</delete>-->
+
+<!--	&lt;!&ndash; 사용자 북마크 삭제 &ndash;&gt;-->
+<!--	<delete id="deleteUserBookmark" parameterType="map">-->
+<!--		DELETE FROM test.BOOK_MARK WHERE USER_ID = #{user_id}-->
+<!--	</delete>-->
+
+<!--	&lt;!&ndash; 사용자 정보 변경의 이전 비밀번호 체크 &ndash;&gt;-->
+<!--	<select id="userPwCheck" parameterType="hashMap" resultType="String">-->
+<!--		SELECT USER_PW-->
+<!--		  FROM test.USER-->
+<!--		 WHERE USER_ID = #{user_id}-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 사용자 정보 변경 &ndash;&gt;-->
+<!--	<update id="updateUserInfo" parameterType="map">-->
+<!--		UPDATE test.USER-->
+<!--		   SET NAME = #{user_name}-->
+<!--		     , EMAIL = CONCAT(#{user_email_id}, '@', #{user_email_address})-->
+<!--		     , AGENCY = #{user_blng}-->
+<!--		     , DEPARTMENT = #{user_dept}-->
+<!--		     , POSITION = #{user_position}-->
+<!--		     , TEL_NO1 = #{user_phone_f}-->
+<!--		     , TEL_NO2 = #{user_phone_m}-->
+<!--		     , TEL_NO3 = #{user_phone_l}-->
+<!--             , HPID = (SELECT HPID FROM test.HOSPITAL WHERE DUTYNAME = #{user_blng})-->
+<!--		<if test="userPw != null and userPw != ''">-->
+<!--		 	 , USER_PW = #{userPw}-->
+<!--		</if>-->
+<!--		 WHERE USER_ID = #{user_id}-->
+<!--	</update>-->
+
+<!--	&lt;!&ndash; 아이디 존재 여부 확인 &ndash;&gt;-->
+<!--	<select id="idFailYnCheck" parameterType="map" resultType="int">-->
+<!--		SELECT COUNT(*)-->
+<!--		FROM test.USER-->
+<!--		WHERE USER_ID = #{user_id}-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; 로그인 실패 상태 값 &ndash;&gt;-->
+<!--	<select id="getUserStatus" parameterType="map" resultType="int">-->
+<!--		SELECT CASE WHEN SEUNGIN_YN = 0 THEN 3  &#45;&#45; 승인 대기중-->
+<!--		            WHEN SEUNGIN_YN = 2 THEN 4  &#45;&#45; 승인 거절-->
+<!--		            ELSE 0  &#45;&#45; 그 외 경우 (승인 상태인 경우)-->
+<!--		       END AS RESULT-->
+<!--		  FROM test.USER-->
+<!--		 WHERE USER_ID = #{user_id};-->
+<!--	</select>-->
+
+<!--	<select id="selectIpCnt" resultType="int">-->
+<!--		SELECT COUNT(*) AS IP_CNT-->
+<!--		  FROM test.IP_MANAGE-->
+<!--	</select>-->
+
+<!--	&lt;!&ndash; IP 관리 조회 &ndash;&gt;-->
+<!--	<select id="selectIpList" parameterType="map" resultType="map">-->
+<!--		SELECT USER_ID-->
+<!--		     , ACCESS_IP-->
+<!--		     , IFNULL(BIGO, '') AS BIGO-->
+<!--			 , CONCAT(DATE_FORMAT(REG_DATE, '%Y. %c. %e. ') , IF(DATE_FORMAT(REG_DATE, '%p') = 'AM', ' 오전 ', ' 오후 '), DATE_FORMAT(REG_DATE, '%l:%i:%s')) AS REG_DATE-->
+<!--		  FROM test.IP_MANAGE-->
+<!--		 ORDER BY REG_DATE DESC-->
+<!--		 LIMIT #{IP_OFFSET}, #{IP_ROW_COUNT}-->
+<!--	</select>-->
+
+<!--	<select id="selectIpData" resultType="map">-->
+<!--		SELECT ACCESS_IP-->
+<!--		  FROM test.IP_MANAGE-->
+<!--	</select>-->
+
+<!--	<delete id="deleteIp" parameterType="map">-->
+<!--		DELETE FROM test.IP_MANAGE-->
+<!--		 WHERE ACCESS_IP = #{del_seq}-->
+<!--	</delete>-->
+
+<!--	<select id="ipDuplicationCheck" parameterType="map" resultType="int">-->
+<!--		SELECT COUNT(*) AS IP_CNT-->
+<!--          FROM test.IP_MANAGE-->
+<!--		 WHERE ACCESS_IP = #{access_ip}-->
+<!--	</select>-->
+
+</mapper>

@@ -1,50 +1,84 @@
 package com.codex.kioom.config.security;
 
-import com.codex.kioom.service.MemberService;
-import lombok.AllArgsConstructor;
+import com.codex.kioom.config.CustomAuthFailureHandler;
+import com.codex.kioom.config.CustomAuthSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig {
 
-//    private final MemberService memberService;
+    @Autowired
+    private CustomAuthFailureHandler customAuthFailureHandler;
 
-    // 비밀번호 암호화
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Autowired
+    private CustomAuthSuccessHandler customAuthSuccessHandler;
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) -> web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/js/libs/**");
-//    }
+//    @Autowired
+//    UserDetailsService userDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.
-                csrf(AbstractHttpConfigurer::disable);
-//                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-//
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//
-//                .and()
-//                .authorizeHttpRequests()
-//                .antMatchers("").permitAll()
-//                .anyRequest().authenticated();
+
+        http
+                .cors()
+                .and()
+                .csrf().disable()
+                .authorizeRequests().antMatchers(
+                    "/login",
+                    "/",
+                    "/user/account",
+                    "doLogin"
+                ).permitAll()
+                .anyRequest().authenticated()
+                .and()
+        .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/doLogin")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
+                .successHandler(customAuthSuccessHandler)
+                .failureHandler(customAuthFailureHandler)
+                .and()
+        .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login")
+                .permitAll();
 
         return http.build();
     }
 
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring()
+                .antMatchers(
+                    "/resources/**",
+                    "/css/**",
+                    "/fonts/**",
+                    "/js/**",
+                    "/static/**",
+                    "/module/**",
+                    "/webjars/**",
+                    "/less/**",
+                    "/img/**"
+                );
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 }

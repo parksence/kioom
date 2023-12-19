@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +21,9 @@ public class UserDTO {
     private String H_PHONE;
     private String H_TEL;
     private String H_FAX;
+    private String CREATE_DATE;
+    private String UPDATE_DATE;
+
+    private UserDTO userDTO;
+    private List<UserDTO> userDTOList;
 }

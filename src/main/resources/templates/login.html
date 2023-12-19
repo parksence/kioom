@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,6 +41,18 @@
    <script src="/js/layout.js"></script>
    <script src="/js/util.js"></script>
 </head>
+<script th:inline="javascript">
+
+   // 로그인정보 입력 체크
+   function validChk(e) {
+
+      if(!e.username.value || !e.password.value) {
+         alert('로그인 정보를 입력해주세요.');
+         return false;
+      }
+      return true;
+   };
+</script>
 <body>
    <div id="wrap">
       <header id="header">
@@ -58,15 +69,16 @@
             <div class="container">
                <section class="login_section">
                   <h3>로그인</h3>
-                  <form action="">
+                  <form th:action="@{/doLogin}" method="post" onsubmit="validChk(this);">
+                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                      <div>
-                        <input type="text"  class="input_h56 input_full"id="id" placeholder="아이디">
+                        <input type="text" class="input_h56 input_full" id="username" name="username" placeholder="아이디" value="" autocomplete="off">
                      </div>
                      <div>
-                        <input type="password" class="input_h56 input_full" id="password" placeholder="비밀번호">
+                        <input type="password" class="input_h56 input_full" id="password" name="password" placeholder="비밀번호" value="" autocomplete="off">
                      </div>
                      <div class="btn_wrap">
-                        <button class="btn xlarge style01" type="button" onclick="window.location.href='/'" >로그인</button>
+                        <button class="btn xlarge style01">로그인</button>
                      </div>
                   </form>
                   <ul class="info">
