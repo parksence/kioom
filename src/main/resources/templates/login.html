@@ -70,7 +70,7 @@
                <section class="login_section">
                   <h3>로그인</h3>
                   <form th:action="@{/doLogin}" method="post" onsubmit="validChk(this);">
-                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+<!--                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
                      <div>
                         <input type="text" class="input_h56 input_full" id="username" name="username" placeholder="아이디" value="" autocomplete="off">
                      </div>
