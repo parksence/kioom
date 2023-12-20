@@ -20,11 +20,20 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Map<String, Object> userLogin(Map<String, Object> param) {
-		// 비밀번호 암호화
-		param.put("userPw", passwordEncoder.encode(param.get("password").toString()));
+
+		if(!param.isEmpty()) {
+			System.out.println("param.toString() = " + param.toString());
+
+			// 비밀번호 암호화
+			String pw = (String) param.get("password").toString();
+			pw = passwordEncoder.encode(pw);
+
+			param.put("userPw", pw);
+		}
 		Map<String, Object> userInfo = userDAO.userChk(param);
 
 		System.out.println("userInfo = " + userInfo);
+
 		return userInfo;
 	}
 

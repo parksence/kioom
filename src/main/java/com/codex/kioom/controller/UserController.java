@@ -17,9 +17,6 @@ public class UserController {
 
     @RequestMapping(value = "/doLogin", method = { RequestMethod.GET, RequestMethod.POST })
     public Map<String, Object> userLogin(@RequestParam Map<String, Object> param) {
-
-        System.out.println("param = " + param);
-        System.out.println("@@@ = ");
         Map<String, Object> result = userService.userLogin(param);
         return result;
     }

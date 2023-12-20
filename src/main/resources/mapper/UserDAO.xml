@@ -17,32 +17,22 @@
 		   AND H_PW = #{userPw};
 	</select>
 
-<!--    &lt;!&ndash; 로그인한 사용자 정보 &ndash;&gt;-->
-<!--	<select id="findByUserID" resultType="User" parameterType="string">-->
-<!--		SELECT U.USER_CODE-->
-<!--			 , U.REG_DATE-->
-<!--			 , U.NAME-->
-<!--			 , U.AGENCY-->
-<!--			 , U.DEPARTMENT-->
-<!--			 , U.EMAIL-->
-<!--			 , U.USER_ID-->
-<!--			 , U.USER_PW-->
-<!--			 , U.ROLE_CODE-->
-<!--			 , IFNULL(U.HPID, '') AS HPID-->
-<!--			 , IFNULL(CONCAT(U.TEL_NO1, U.TEL_NO2, U.TEL_NO3), '') AS TEL_NO-->
-<!--		     , IFNULL(U.TEL_NO1, '') AS TEL_NO1-->
-<!--		     , IFNULL(U.TEL_NO2, '') AS TEL_NO2-->
-<!--		     , IFNULL(U.TEL_NO3, '') AS TEL_NO3-->
-<!--			 , IFNULL(U.POSITION, '') AS POSITION-->
-<!--			 , IFNULL(U.SEUNGIN_YN, '0') AS SEUNGIN_YN-->
-<!--			 , R.ROLE_NAME-->
-<!--		  FROM test.USER AS U-->
-<!--		  LEFT-->
-<!--		  JOIN test.ROLE AS R-->
-<!--		    ON U.ROLE_CODE = R.ROLE_CODE-->
-<!--		 WHERE U.USER_ID = #{username}-->
-<!--           AND U.SEUNGIN_YN = '1'-->
-<!--	</select>-->
+    <!-- 로그인한 사용자 정보 -->
+	<select id="findByUserID" resultType="User" parameterType="string">
+		SELECT H_ID
+		     , EMAIL
+		     , H_NAME
+		     , H_PW
+		     , H_LOCATION
+		     , H_MANAGER
+		     , H_PHONE
+		     , H_TEL
+		     , H_FAX
+		     , CREATE_DATE
+		     , UPDATE_DATE
+		  FROM HOSPITAL_M
+		 WHERE H_ID = #{username}
+	</select>
 
 <!--	&lt;!&ndash; 사용자 리스트 조회 &ndash;&gt;-->
 <!--	<select id="userList" parameterType="hashMap" resultType="map">-->

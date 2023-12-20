@@ -1,41 +1,32 @@
-package com.sh.service;
+package com.codex.kioom.config;
 
-import java.util.ArrayList;
-
+import com.codex.kioom.dao.UserDAO;
+import com.codex.kioom.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.sh.dao.UserDao;
-import com.sh.dto.CustomUserDetails;
-import com.sh.dto.UserDTO;
+import java.util.ArrayList;
 
 @Service
-public class SecurityService implements UserDetailsService {
+public class PrincipalDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserDAO userDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		System.out.println("[ SecurityServive ] : " + username);
 
 		ArrayList<UserDTO> userAuthes = null;
-
 		userAuthes = userDao.findByUserID(username);
-
-//		System.out.println("userAuthes : " + userAuthes);
 
 		if (userAuthes.size() == 0) {
 			throw new UsernameNotFoundException("User " + username + " Not Found");
 		}
 
-		// Index 0 out of bounds for length
-
 		return new CustomUserDetails(userAuthes);
-
 	}
 
 }

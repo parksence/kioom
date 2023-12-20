@@ -1,5 +1,6 @@
-package com.codex.kioom.dto;
+package com.codex.kioom.config;
 
+import com.codex.kioom.dto.UserDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
