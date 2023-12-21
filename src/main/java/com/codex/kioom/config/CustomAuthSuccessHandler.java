@@ -33,6 +33,8 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 		//기본 url 설정, savedRequest가 null일 경우 설정한 페이지로 보내기 위함이다.
 		setDefaultTargetUrl("/");
 
+		System.out.println("!################");
+
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
 }

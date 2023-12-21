@@ -15,10 +15,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/doLogin", method = { RequestMethod.GET, RequestMethod.POST })
-    public Map<String, Object> userLogin(@RequestParam Map<String, Object> param) {
-        Map<String, Object> result = userService.userLogin(param);
-        return result;
+    @RequestMapping(value = "/checkUserId.ajax", method = RequestMethod.POST)
+    public int checkUser(@RequestParam Map<String, Object> param) {
+        return userService.getUserIdYn(param);
     }
 
 }

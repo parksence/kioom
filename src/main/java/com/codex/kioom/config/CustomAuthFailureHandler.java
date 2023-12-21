@@ -46,6 +46,8 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 //		// 로그인 이력 추가
 //		logService.insertLoginLog(loginInfo, request);
 
+		System.out.println("@@@@@@@@@@@@@@@@@");
+
 //		setDefaultFailureUrl("/login?error=true&exception=" + userStatus);
 		setDefaultFailureUrl("/login?error=true&exception=");
 		super.onAuthenticationFailure(request, response, exception);

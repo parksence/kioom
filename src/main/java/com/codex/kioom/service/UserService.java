@@ -8,6 +8,7 @@ import java.util.Map;
 @Service
 public interface UserService {
 	Map<String, Object> userLogin(Map<String, Object> param);
+	int getUserIdYn(Map<String, Object> param);
 
 //	Map<String, Object> removeUser(String userCode);
 //

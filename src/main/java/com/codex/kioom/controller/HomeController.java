@@ -41,6 +41,14 @@ public class HomeController {
         return modelView;
     }
 
+    @RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView join(ModelAndView modelView, Model model) throws Exception {
+
+        modelView.setViewName("/join");
+
+        return modelView;
+    }
+
     @RequestMapping(value = "/user/account", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView account(ModelAndView modelView, Model model) throws Exception {
 

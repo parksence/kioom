@@ -21,6 +21,8 @@ public class UserDTO {
     private String H_PHONE;
     private String H_TEL;
     private String H_FAX;
+    private String ROLE_CODE;
+    private String ROLE_NAME;
     private String CREATE_DATE;
     private String UPDATE_DATE;
 

@@ -12,6 +12,8 @@
 		     , H_PHONE
 		     , H_TEL
 		     , H_FAX
+		     , ROLE_CD
+		     , ROLE_NM
 		  FROM hospital_m
 		 WHERE H_ID = #{username}
 		   AND H_PW = #{userPw};
@@ -277,16 +279,16 @@
 <!--		where USER_CODE = #{userCode};-->
 <!--	</select>-->
 
-<!--	&lt;!&ndash;-->
-<!--	사용자 아이디 중복 검사-->
-<!--	0 : 사용가능-->
-<!--	1 : 사용 불가능-->
-<!--	&ndash;&gt;-->
-<!--	<select id="getUserIdYn" parameterType="hashMap" resultType="int">-->
-<!--		SELECT COUNT(*) AS USER_ID_YN-->
-<!--		  FROM test.USER-->
-<!--		 WHERE USER_ID = #{user_id}-->
-<!--	</select>-->
+	<!--
+	사용자 아이디 중복 검사
+	0 : 사용가능
+	1 : 사용 불가능
+	-->
+	<select id="getUserIdYn" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*) AS USER_ID_YN
+		  FROM hospital_m
+		 WHERE H_ID = #{h_id}
+	</select>
 
 <!--	&lt;!&ndash; 소속 데이터 조회 &ndash;&gt;-->
 <!--	<select id="getAgencyList" resultType="map">-->

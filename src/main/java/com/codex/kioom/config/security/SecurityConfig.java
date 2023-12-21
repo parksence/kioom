@@ -33,21 +33,20 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .csrf().disable()
-                .authorizeRequests().antMatchers(
-                    "/login",
-                    "/",
-                    "/user/account",
-                    "doLogin"
-                ).permitAll()
-                .anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers("/").authenticated()
+//                .antMatchers("/user/**").authenticated()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/data/**").authenticated()
+                .antMatchers("/monitoring/**").authenticated()
+                .anyRequest().permitAll()
                 .and()
         .formLogin()
-                .loginPage("/doLogin")
-//                .loginProcessingUrl("/doLogin")
+                .loginPage("/login")
+                .loginProcessingUrl("/doLogin")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/", true)
-                .permitAll()
                 .successHandler(customAuthSuccessHandler)
                 .failureHandler(customAuthFailureHandler)
                 .and()

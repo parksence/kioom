@@ -37,6 +37,12 @@ public class UserServiceImpl implements UserService {
 		return userInfo;
 	}
 
+	// 아이디 중복 검사
+	@Override
+	public int getUserIdYn(Map<String, Object> param) {
+		return userDAO.getUserIdYn(param);
+	}
+
 //	@Override
 //	public Map<String, Object> getUserList() {
 //
@@ -65,12 +71,6 @@ public class UserServiceImpl implements UserService {
 //		List<Map<String, Object>> result = userDao.getRoleList();
 //
 //		return Maps.json("S-1", "ok", result);
-//	}
-//
-//	// 아이디 중복 검사
-//	@Override
-//	public int getUserIdYn(Map<String, Object> param) {
-//		return userDao.getUserIdYn(param);
 //	}
 //
 //	@Override
