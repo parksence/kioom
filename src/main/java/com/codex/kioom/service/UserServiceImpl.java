@@ -43,6 +43,13 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserIdYn(param);
 	}
 
+	// 사용자 등록
+	@Override
+	public void insertUser(Map<String, Object> param) {
+		param.put("h_pw", passwordEncoder.encode(param.get("password").toString()));
+		userDAO.insertUser(param);
+	}
+
 //	@Override
 //	public Map<String, Object> getUserList() {
 //
@@ -223,13 +230,6 @@ public class UserServiceImpl implements UserService {
 //	/* 사용자 정보 수정 */
 //	public void modifyUser(Map<String, Object> param) {
 //		userDao.modifyUser(param);
-//	}
-//
-//	// 사용자 등록
-//	@Override
-//	public void insertUser(Map<String, Object> param) {
-//		param.put("userPw", passwordEncoder.encode(param.get("user_password").toString()));
-//		userDao.insertUser(param);
 //	}
 //
 //	// 사용자 리스트 일괄거절

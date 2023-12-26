@@ -1,5 +1,7 @@
 package com.codex.kioom.controller;
 
+import com.codex.kioom.config.security.auth.PrincipalDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,9 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView home(ModelAndView modelView, Model model) throws Exception {
+    public ModelAndView home(ModelAndView modelView, Model model, @AuthenticationPrincipal PrincipalDetails authUser) throws Exception {
 
         modelView.setViewName("/web/user/dashboard");
+
+        modelView.addObject("h_name", authUser.getUsername().toString());
 
         return modelView;
     }
@@ -37,14 +41,6 @@ public class HomeController {
     public ModelAndView login(ModelAndView modelView, Model model) throws Exception {
 
         modelView.setViewName("/login");
-
-        return modelView;
-    }
-
-    @RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView join(ModelAndView modelView, Model model) throws Exception {
-
-        modelView.setViewName("/join");
 
         return modelView;
     }

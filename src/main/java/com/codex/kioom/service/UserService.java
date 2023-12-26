@@ -7,8 +7,9 @@ import java.util.Map;
 
 @Service
 public interface UserService {
-	Map<String, Object> userLogin(Map<String, Object> param);
-	int getUserIdYn(Map<String, Object> param);
+	Map<String, Object> userLogin(Map<String, Object> param); // 사용자 로그인
+	int getUserIdYn(Map<String, Object> param); // 아이디 중복 검사
+	void insertUser(Map<String, Object> param); // 병원 계정 등록
 
 //	Map<String, Object> removeUser(String userCode);
 //
@@ -47,8 +48,6 @@ public interface UserService {
 //	void insertUserList(Map<String, Object> param); // 관리자 사용자 등록
 //
 //	void modifyUser(Map<String, Object> param); // 사용자 정보 수정
-//
-//	void insertUser(Map<String, Object> param); // 사용자 등록
 //
 //	void updateAllNo(Map<String, Object> param); // 사용자 리스트 일괄 거절
 //

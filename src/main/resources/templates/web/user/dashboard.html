@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +41,21 @@
    <script src="/js/modal.js"></script>
    <script src="/js/util.js"></script>
 </head>
+<script th:inline="javascript">
 
+   // 로그아웃
+   async function logout(type){
+      if(!type) {
+         if(!confirm("로그아웃 하시겠습니까?")) return;
+      }
+      await fetch('/logout', {
+         method:'post',
+      })
+         .then(()=>{location.replace('/login')})
+         .catch(e=>console.log(e));
+   };
+
+</script>
 <body>
    <div id="wrap">
       <aside id="aside">
@@ -86,9 +99,9 @@
                   <div class="controller">
                      <div class="log_menu before">
                         <p>
-                           <a href="/user/account" id="user_name">관리자</a>님 안녕하세요.
+                           <a href="/myData" id="user_name"><span th:text="${h_name}" /></a>님 안녕하세요.
                         </p>
-                        <button type="button">로그아웃</button>
+                        <button type="button" onclick="logout();">로그아웃</button>
                      </div>
                   </div>
                </div>

@@ -12,4 +12,5 @@ public interface UserDAO {
     Map<String, Object> userChk(Map<String, Object> param);
     ArrayList<UserDTO> findByUserID(String username);
     int getUserIdYn(Map<String, Object> param);
+    void insertUser(Map<String, Object> param);
 }
