@@ -111,32 +111,6 @@
       return regExp.test(asValue);
    }
 
-   // 이메일 도메인 선택시 인풋박스 값 변경
-   function updateInput() {
-      // 셀렉트 박스에서 선택한 값을 가져옵니다.
-      var selectedValue = document.getElementById("email3").value;
-
-      // 가져온 값을 인풋박스에 설정합니다.
-      document.getElementById("email2").value = selectedValue;
-   }
-
-   // 부서 전화번호 숫자만 입력
-   const stringFilter = (input, max) => {
-      const filter = input.value.replace(/[^0-9]/g, '');
-
-      if(filter === '') {
-         input.value = '';
-         return;
-      }
-
-      if(input.value.length > max) {
-         input.value = input.value.slice(0, max);
-         return;
-      };
-
-      input.value = filter;
-   };
-
    // 취소 버튼 클릭시 이전 페이지로 이동
    function history_back() {
       history.back();
@@ -156,12 +130,7 @@
       }
 
       // 이메일 입력 검증
-      if(!validateInput('email1', '이메일을 입력해주세요.')) {
-         return false;
-      }
-
-      // 이메일 도메인 입력 검증
-      if(!validateInput('email2', '이메일 도메인을 입력해주세요.')) {
+      if(!validateInput('email', '이메일을 입력해주세요.')) {
          return false;
       }
 
@@ -190,33 +159,13 @@
          return false;
       }
 
-      // 담당자 연락처1 입력 검증
-      if(!validateInput('h_phone1', '담당자 연락처를 입력해주세요.')) {
-         return false;
-      }
-
-      // 담당자 연락처2 입력 검증
-      if(!validateInput('h_phone2', '담당자 연락처를 입력해주세요.')) {
-         return false;
-      }
-
       // 담당자 연락처3 입력 검증
-      if(!validateInput('h_phone3', '담당자 연락처를 입력해주세요.')) {
+      if(!validateInput('h_phone', '담당자 연락처를 입력해주세요.')) {
          return false;
       }
 
       // 병원 연락처1 입력 검증
-      if(!validateInput('h_tel1', '담당자 연락처를 입력해주세요.')) {
-         return false;
-      }
-
-      // 병원 연락처2 입력 검증
-      if(!validateInput('h_tel2', '담당자 연락처를 입력해주세요.')) {
-         return false;
-      }
-
-      // 병원 연락처3 입력 검증
-      if(!validateInput('h_tel3', '담당자 연락처를 입력해주세요.')) {
+      if(!validateInput('h_tel', '담당자 연락처를 입력해주세요.')) {
          return false;
       }
 
@@ -237,6 +186,11 @@
 
       // 정규표현식과 비밀번호를 비교하여 맞으면 true, 틀리면 false를 반환합니다.
       return passwordPattern.test(password);
+   }
+
+   // 연락처 자동 하이픈
+   const phoneAutoHyphen = (target) => {
+      target.value = target.value.replace(/[^0-9]/g, '').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
    }
 
 </script>
@@ -312,32 +266,17 @@
                                              <input type="hidden" name="idCheckYn" id="idCheckYn" value="N">
                                           </th>
                                           <td>
-                                            <input type="text" id="h_id" name="h_id" class="input_w200">
+                                            <input type="text" id="h_id" name="h_id" class="input_w200" placeholder="아이디">
                                             <button class="idCheck" type="button" onclick="userIdCheck();">중복확인</button>
                                           </td>
                                        </tr>
                                        <tr>
                                           <th scope="row">
-                                             <label for="email1">E-mail</label><span>*</span>
+                                             <label for="email">이메일</label><span>*</span>
                                           </th>
                                           <td>
                                              <div class="input_wrap col3 justify_start">
-                                                <input type="text" class="input_w200" name="email1" id="email1" value="" maxlength="20">
-                                                @
-                                                <input type="text" class="input_w200" name="email2" id="email2" value="">
-                                                <span class="custom_select_box input_w200">
-                                                   <select name="email3" id="email3" onchange="updateInput()">
-                                                      <option value="" selected="" disabled="">선택하세요</option>
-                                                      <option value="">직접입력</option>
-                                                      <option value="gmail.com">gmail.com</option>
-                                                      <option value="daum.net">daum.net</option>
-                                                      <option value="hanmail.net">hanmail.net</option>
-                                                      <option value="naver.com">naver.com</option>
-                                                      <option value="nate.com">nate.com</option>
-                                                      <option value="paran.com">paran.com</option>
-                                                      <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                                  </select>
-                                                </span>
+                                                <input type="text" class="input_full" name="email" id="email" value="" maxlength="50" placeholder="이메일">
                                              </div>
                                           </td>
                                        </tr>
@@ -346,7 +285,7 @@
                                             비밀번호<span>*</span>
                                           </th>
                                           <td>
-                                             <input type="password" id="password" name="password" class="input_full">
+                                             <input type="password" id="password" name="password" class="input_full" placeholder="비밀번호">
                                           </td>
                                        </tr>
                                        <tr>
@@ -354,13 +293,13 @@
                                              <label for="h_name">병원명</label><span>*</span>
                                           </th>
                                           <td>
-                                             <input type="text" id="h_name" name="h_name" class="input_full">
+                                             <input type="text" id="h_name" name="h_name" class="input_full" placeholder="병원명">
                                           </td>
                                        </tr>
                                        <tr>
                                           <th scope="row">병원 위치<span>*</span></th>
                                           <td>
-                                             <input type="text" id="h_location" name="h_location" class="input_full">
+                                             <input type="text" id="h_location" name="h_location" class="input_full" placeholder="주소">
                                           </td>
                                        </tr>
                                        <tr>
@@ -368,71 +307,32 @@
                                              <label for="h_manager">담당자</label>
                                           </th>
                                           <td>
-                                             <input type="text" id="h_manager" name="h_manager" class="input_full">
+                                             <input type="text" id="h_manager" name="h_manager" class="input_full" placeholder="이름">
                                           </td>
                                        </tr>
                                        <tr>
                                           <th scope="row">
-                                             <label for="h_phone1">담당자 연락처</label><span>*</span>
+                                             <label for="h_phone">담당자 연락처</label><span>*</span>
                                           </th>
                                           <td>
-                                             <div class="input_wrap col3 justify_start">
-                                                <span class="custom_select_box input_w200">
-                                                   <select name="h_phone1" id="h_phone1">
-                                                      <option value="02">02</option>
-                                                      <option value="042">042</option>
-                                                      <option value="043">043</option>
-                                                      <option value="044">044</option>
-                                                      <option value="010">010</option>
-                                                      <option value="011">011</option>
-                                                  </select>
-                                                </span>
-                                                <input type="text" class="input_w200" name="h_phone2" id="h_phone2" value="" maxlength="4" onchange="stringFilter(this, 4)">
-                                                <input type="text" class="input_w200" name="h_phone3" id="h_phone3" value="" maxlength="4" onchange="stringFilter(this, 4)">
-                                             </div>
+                                             <input type="text" class="input_full" name="h_phone" id="h_phone" value="" maxlength="13" oninput="phoneAutoHyphen(this)" placeholder="휴대전화번호">
                                           </td>
                                        </tr>
 
                                        <tr>
                                           <th scope="row">
-                                             <label for="h_tel1">병원 연락처</label><span>*</span>
+                                             <label for="h_tel">병원 연락처</label><span>*</span>
                                           </th>
                                           <td>
-                                             <div class="input_wrap col3 justify_start">
-                                                <span class="custom_select_box input_w200">
-                                                   <select name="h_tel1" id="h_tel1">
-                                                      <option value="02">02</option>
-                                                      <option value="042">042</option>
-                                                      <option value="043">043</option>
-                                                      <option value="044">044</option>
-                                                      <option value="010">010</option>
-                                                      <option value="011">011</option>
-                                                  </select>
-                                                </span>
-                                                <input type="text" class="input_w200" name="h_tel2" id="h_tel2" value="" maxlength="4" onchange="stringFilter(this, 4)">
-                                                <input type="text" class="input_w200" name="h_tel3" id="h_tel3" value="" maxlength="4" onchange="stringFilter(this, 4)">
-                                             </div>
+                                             <input type="text" class="input_full" name="h_tel" id="h_tel" value="" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
                                           </td>
                                        </tr>
                                        <tr>
                                           <th scope="row">
-                                             <label for="h_fax1">팩스 번호</label>
+                                             <label for="h_fax">팩스 번호</label>
                                           </th>
                                           <td>
-                                             <div class="input_wrap col3 justify_start">
-                                                <span class="custom_select_box input_w200">
-                                                   <select name="h_fax1" id="h_fax1">
-                                                      <option value="02">02</option>
-                                                      <option value="042">042</option>
-                                                      <option value="043">043</option>
-                                                      <option value="044">044</option>
-                                                      <option value="010">010</option>
-                                                      <option value="011">011</option>
-                                                  </select>
-                                                </span>
-                                                <input type="text" class="input_w200" name="h_fax2" id="h_fax2" value="" maxlength="4" onchange="stringFilter(this, 4)">
-                                                <input type="text" class="input_w200" name="h_fax3" id="h_fax3" value="" maxlength="4" onchange="stringFilter(this, 4)">
-                                             </div>
+                                             <input type="text" class="input_full" name="h_fax" id="h_fax" value="" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
                                           </td>
                                        </tr>
                                     </tbody>

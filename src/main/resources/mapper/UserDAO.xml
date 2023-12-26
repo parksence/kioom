@@ -56,14 +56,14 @@
 		INSERT INTO hospital_m(H_ID, EMAIL, H_PW, H_NAME, H_LOCATION, H_MANAGER, H_PHONE, H_TEL, H_FAX, ROLE_CD, ROLE_NM, CREATE_DATE, UPDATE_DATE)
 		VALUES
 			( #{h_id}
-			, CONCAT(#{email1}, '@', #{email2})
+			, #{email}
 			, #{h_pw}
 			, #{h_name}
 			, #{h_location}
 			, #{h_manager}
-			, CONCAT(#{h_phone1}, '-', #{h_phone2}, '-', #{h_phone3})
-			, CONCAT(#{h_tel1}, '-', #{h_tel2}, '-', #{h_tel3})
-			, CONCAT(#{h_fax1}, '-', #{h_fax2}, '-', #{h_fax3})
+			, #{h_phone}
+			, #{h_tel}
+			, #{h_fax}
 			, '1'
 			, '관리자'
 			, CURRENT_TIMESTAMP
