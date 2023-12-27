@@ -22,8 +22,6 @@ public class UserServiceImpl implements UserService {
 	public Map<String, Object> userLogin(Map<String, Object> param) {
 
 		if(!param.isEmpty()) {
-			System.out.println("param.toString() = " + param.toString());
-
 			// 비밀번호 암호화
 			String pw = (String) param.get("password").toString();
 			pw = passwordEncoder.encode(pw);
@@ -31,8 +29,6 @@ public class UserServiceImpl implements UserService {
 			param.put("userPw", pw);
 		}
 		Map<String, Object> userInfo = userDAO.userChk(param);
-
-		System.out.println("userInfo = " + userInfo);
 
 		return userInfo;
 	}
@@ -50,13 +46,44 @@ public class UserServiceImpl implements UserService {
 		userDAO.insertUser(param);
 	}
 
-//	@Override
-//	public Map<String, Object> getUserList() {
-//
-//		List<Map<String, Object>> list = userDao.getUserList();
-//
-//		return Maps.json("S-1", "ok", list);
-//	}
+	@Override
+	public int updateUser(Map<String, Object> param) {
+
+		if(!param.get("password").equals("")) {
+			param.put("h_pw", passwordEncoder.encode(param.get("password").toString()));
+		}
+
+		// 업데이트 결과 회신
+		int result = userDAO.updateUser(param);
+
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> getHospitalList(Map<String, Object> param) {
+		List<Map<String, Object>> list = userDAO.getHospitalList(param);
+		return list;
+	}
+
+	@Override
+	public void deleteHospitalList(Map<String, Object> param) {
+		
+		for (int i=1; i < param.size(); i++) {
+			if(param.containsKey("hospital_"+i)) {
+				param.put("h_id", param.get("hospital_id"+i).toString());
+
+				// 병원 정보 삭제
+				userDAO.deleteHospitalList(param);
+			}
+		}
+	}
+
+	@Override
+	public int getHospitalListCnt(Map<String, Object> param) {
+		int totalCnt = userDAO.getHospitalListCnt(param);
+		return totalCnt;
+	}
+
 
 //	@Override
 //	public Map<String, Object> userList(Map<String, Object> param) {
@@ -148,26 +175,7 @@ public class UserServiceImpl implements UserService {
 //		return Maps.json("S-1", userCode + "번 회원이 삭제 되었습니다.");
 //	}
 //
-//	@Override
-//	public Map<String, Object> updateUser(Map<String, Object> param) {
-//		// TODO Auto-generated method stub
-//
-//		Map<String, Object> user = userDao.findByUser(param);
-//
-//		if (user.get("USER_TYPE").toString().equals("1")) {
-//			System.out.println("0으로 변경");
-//
-//			userDao.userAccountStop(param);
-//
-//			return Maps.json("S-1", "해당 계정은 정지 되었습니다.");
-//		} else {
-//			System.out.println("1으로 변경");
-//
-//			userDao.userAccountStart(param);
-//
-//			return Maps.json("S-1", "해당 계정으로 로그인 할 수 있어요~");
-//		}
-//	}
+
 //
 //	@Override
 //	public Map<String, Object> bookmark(String hpid, String userCode) {

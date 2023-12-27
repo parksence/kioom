@@ -52,28 +52,29 @@ public class PrincipalDetails implements UserDetails {
     public String getName() {
         return userDTO.getH_NAME();
     }
-
     public String getEmail() {
         return userDTO.getEMAIL();
     }
     public String getTel() {
         return userDTO.getH_TEL();
     }
-
     public String getFax() {
         return userDTO.getH_FAX();
     }
-
     public String getLocation() {
         return userDTO.getH_LOCATION();
     }
-
     public String getManager() {
         return userDTO.getH_MANAGER();
     }
-
     public String getPhone() {
         return userDTO.getH_PHONE();
+    }
+    public String getRoleCd() {
+        return userDTO.getROLE_CD();
+    }
+    public String getRoleNm() {
+        return userDTO.getROLE_NM();
     }
 
     @Override

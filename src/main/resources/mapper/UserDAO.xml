@@ -71,4 +71,61 @@
 			);
 	</insert>
 
+	<update id="updateUser" parameterType="map">
+		UPDATE hospital_m
+           SET EMAIL = #{email}
+		<if test="h_pw != null and h_pw != ''">
+             , H_PW = #{h_pw}
+		</if>
+             , H_NAME = #{h_name}
+             , H_LOCATION = #{h_location}
+             , H_MANAGER = #{h_manager}
+             , H_PHONE = #{h_phone}
+             , H_TEL = #{h_tel}
+             , H_FAX = #{h_fax}
+             , UPDATE_DATE = CURRENT_TIMESTAMP
+         WHERE h_id = #{h_id}
+	</update>
+
+	<!-- 병원 리스트 조회 -->
+	<select id="getHospitalList" parameterType="hashMap" resultType="map">
+		SELECT H_ID
+		     , EMAIL
+		     , H_NAME
+		     , H_LOCATION
+		     , H_MANAGER
+		     , H_PHONE
+		     , H_TEL
+		     , H_FAX
+		  FROM hospital_m
+		<where>
+			<if test="search != null and search != ''">
+				AND ( H_ID LIKE CONCAT('%', #{search}, '%')
+			 	 OR H_MANAGER LIKE CONCAT('%', #{search}, '%')
+				 OR H_NAME LIKE CONCAT('%', #{search}, '%')
+				)
+			</if>
+		</where>
+		 ORDER BY CREATE_DATE DESC
+		 LIMIT #{startIndex}, #{pageSize}
+	</select>
+
+	<!-- 병원 리스트 카운트 조회 -->
+	<select id="getHospitalListCnt" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM hospital_m
+		<where>
+			<if test="search != null and search != ''">
+				AND ( H_ID LIKE CONCAT('%', #{search}, '%')
+				OR H_MANAGER LIKE CONCAT('%', #{search}, '%')
+				OR H_NAME LIKE CONCAT('%', #{search}, '%')
+				)
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteHospitalList" parameterType="map">
+		DELETE FROM hospital_m WHERE H_ID = #{h_id}
+	</delete>
+
 </mapper>

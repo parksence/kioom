@@ -42,6 +42,21 @@
    <script src="/js/layout.js"></script>
    <script src="/js/util.js"></script>
 </head>
+<script th:inline="javascript">
+
+   // 로그아웃
+   async function logout(type){
+      if(!type) {
+         if(!confirm("로그아웃 하시겠습니까?")) return;
+      }
+      await fetch('/logout', {
+         method:'post',
+      })
+              .then(()=>{location.replace('/login')})
+              .catch(e=>console.log(e));
+   };
+
+</script>
 <body>
    <div id="wrap">
       <aside id="aside">
@@ -54,9 +69,11 @@
             <li class="depth1">
                <a href="#" class="depth1_title on active">사용자관리</a>
                <ul class="depth2_wrap">
-                  <li class="depth2">
-                     <a href="/user/hospital" class="depth2_title">병원 관리</a>
-                  </li>
+                  <th:block th:if="${role_cd} == '999'">
+                     <li class="depth2">
+                        <a href="/" class="depth2_title">병원 관리</a>
+                     </li>
+                  </th:block>
                   <li class="depth2">
                      <a href="/user/patient" class="depth2_title active">환자 관리</a>
                   </li>
@@ -65,9 +82,9 @@
             <li class="depth1">
                <a href="/data/manage" class="depth1_title">데이터관리</a>
             </li>
-            <li class="depth1">
-               <a href="/monitoring/log" class="depth1_title">모니터링</a>
-            </li>
+<!--            <li class="depth1">-->
+<!--               <a href="/monitoring/log" class="depth1_title">모니터링</a>-->
+<!--            </li>-->
          </ul>
          <button class="siteMap-btn">
             <span class="siteMap-top"></span>
@@ -83,9 +100,9 @@
                   <div class="controller">
                      <div class="log_menu before">
                         <p>
-                           <a href="/user/account" id="user_name">관리자</a>님 안녕하세요.
+                           <a href="/myData" id="user_name"><span th:text="${h_name}" /></a>님 안녕하세요.
                         </p>
-                        <button type="button">로그아웃</button>
+                        <button type="button" onclick="logout();">로그아웃</button>
                      </div>
                   </div>
                </div>

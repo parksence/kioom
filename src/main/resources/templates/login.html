@@ -71,13 +71,14 @@
                   <form action="/doLogin" method="post" onsubmit="validChk(this);">
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                      <div>
-                        <input type="text" class="input_h56 input_full" id="username" name="username" placeholder="아이디" value="" autocomplete="off">
+                        <input type="text" class="input_h56 input_full" id="username" name="username" placeholder="아이디" value="codex" autocomplete="off">
                      </div>
                      <div>
-                        <input type="password" class="input_h56 input_full" id="password" name="password" placeholder="비밀번호" value="" autocomplete="off">
+                        <input type="password" class="input_h56 input_full" id="password" name="password" placeholder="비밀번호" value="gmlwns12!" autocomplete="off">
                      </div>
                      <div class="btn_wrap">
                         <button class="btn xlarge style01">로그인</button>
+<!--                        <input type="hidden" id="auto-login" class="sr-only" name="remember-me" value="true">-->
                      </div>
                   </form>
                </section>

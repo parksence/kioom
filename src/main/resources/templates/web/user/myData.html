@@ -50,6 +50,18 @@
 </head>
 <script th:inline="javascript">
 
+   // 로그아웃
+   async function logout(type){
+      if(!type) {
+         if(!confirm("로그아웃 하시겠습니까?")) return;
+      }
+      await fetch('/logout', {
+         method:'post',
+      })
+         .then(()=>{location.replace('/login')})
+         .catch(e=>console.log(e));
+   };
+
    // 아이디 중복 검사
    function userIdCheck() {
 
@@ -134,19 +146,16 @@
          return false;
       }
 
-      // 비밀번호 입력 검증
-      if(!validateInput('password', '비밀번호를 입력해주세요.')) {
-         return false;
-      }
+      if(document.getElementById('password').value != "") {
+         // 비밀번호 정합성 체크 함수(true, false) 반환
+         let passwordYn = checkPasswordValidity(document.getElementById('password').value);
 
-      // 비밀번호 정합성 체크 함수(true, false) 반환
-      let passwordYn = checkPasswordValidity(document.getElementById('password').value);
-
-      // 비밀번호 정합성 체크
-      if(!passwordYn) {
-         alert('영문, 숫자, 특수기호를 포함한 8~16자리를 입력해주세요.');
-         document.getElementById('password').focus();
-         return false;
+         // 비밀번호 정합성 체크
+         if(!passwordYn) {
+            alert('영문, 숫자, 특수기호를 포함한 8~16자리를 입력해주세요.');
+            document.getElementById('password').focus();
+            return false;
+         }
       }
 
       // 병원명 입력 검증
@@ -169,10 +178,44 @@
          return false;
       }
 
-      // UserController로 데이터 전송
-      account_proc.action = "/account_proc";
-      account_proc.method = "post";
-      document.account_proc.submit();
+      // 폼 데이터에 넣을 데이터 화면에서 가져오기
+      let h_id = $('#h_id').val();
+      let password = $('#password').val();
+      let email = $('#email').val();
+      let h_name = $('#h_name').val();
+      let h_location = $('#h_location').val();
+      let h_manager = $('#h_manager').val();
+      let h_phone = $('#h_phone').val();
+      let h_tel = $('#h_tel').val();
+      let h_fax = $('#h_fax').val();
+
+      let userInfoData = new FormData();
+      userInfoData.append('h_id', h_id);
+      userInfoData.append('password', password);
+      userInfoData.append('email', email);
+      userInfoData.append('h_name', h_name);
+      userInfoData.append('h_location', h_location);
+      userInfoData.append('h_manager', h_manager);
+      userInfoData.append('h_phone', h_phone);
+      userInfoData.append('h_tel', h_tel);
+      userInfoData.append('h_fax', h_fax);
+
+      $.ajax({
+         url:"/update_proc",
+         type:"post",
+         data:userInfoData,
+         processData : false,
+         contentType : false,
+         success: function (result) {
+            if(result == 1) {
+               alert(`정상적으로 변경되었습니다.\n다시 로그인해주세요.`);
+               logout(true);
+            } else {
+               alert('사용자 정보 변경이 실패하였습니다.\n관리자에게 문의하세요.');
+            }
+         },
+      });
+
    };
 
    // 비밀번호 정합성 체크
@@ -239,7 +282,7 @@
                   <div class="controller">
                      <div class="log_menu before">
                         <p>
-                           <a href="/myData" id="user_name"><span th:text="${h_name}" /></a>님 안녕하세요.
+                           <a href="/myData" id="user_name"><span th:text="${user_info.h_name}" /></a>님 안녕하세요.
                         </p>
                         <button type="button" onclick="logout();">로그아웃</button>
                      </div>
@@ -254,7 +297,7 @@
                      <div class="subContainer">
                         <div class="sub_content_section">
                            <div class="board_info">
-                              <h5 class="board_info_title">병원 계정 등록</h5>
+                              <h5 class="board_info_title">병원 계정 수정</h5>
                               <form name="account_proc" id="account_proc">
                                  <table class="custom_table">
                                     <colgroup>
@@ -265,11 +308,11 @@
                                        <tr>
                                           <th scope="row">
                                              <label for="h_id">아이디</label><span>*</span>
-                                             <input type="hidden" name="idCheckYn" id="idCheckYn" value="N">
+                                             <input type="hidden" name="idCheckYn" id="idCheckYn" value="Y">
                                           </th>
                                           <td>
-                                            <input type="text" id="h_id" name="h_id" class="input_w200" placeholder="아이디">
-                                            <button class="idCheck" type="button" onclick="userIdCheck();">중복확인</button>
+                                            <input type="text" id="h_id" name="h_id" class="input_w200" th:value="${user_info.h_id}" placeholder="아이디" disabled="disabled">
+                                            <button class="idCheck" type="button" onclick="userIdCheck();" disabled="disabled">중복확인</button>
                                           </td>
                                        </tr>
                                        <tr>
@@ -278,13 +321,13 @@
                                           </th>
                                           <td>
                                              <div class="input_wrap col3 justify_start">
-                                                <input type="text" class="input_full" name="email" id="email" value="" maxlength="50" placeholder="이메일">
+                                                <input type="text" class="input_full" name="email" id="email" th:value="${user_info.email}" maxlength="50" placeholder="이메일">
                                              </div>
                                           </td>
                                        </tr>
                                        <tr>
                                           <th scope="row">
-                                            비밀번호<span>*</span>
+                                            비밀번호
                                           </th>
                                           <td>
                                              <input type="password" id="password" name="password" class="input_full" placeholder="비밀번호">
@@ -295,13 +338,13 @@
                                              <label for="h_name">병원명</label><span>*</span>
                                           </th>
                                           <td>
-                                             <input type="text" id="h_name" name="h_name" class="input_full" placeholder="병원명">
+                                             <input type="text" id="h_name" name="h_name" th:value="${user_info.h_name}" class="input_full" placeholder="병원명">
                                           </td>
                                        </tr>
                                        <tr>
                                           <th scope="row">병원 위치<span>*</span></th>
                                           <td>
-                                             <input type="text" id="h_location" name="h_location" class="input_full" placeholder="주소">
+                                             <input type="text" id="h_location" name="h_location" th:value="${user_info.h_location}" class="input_full" placeholder="주소">
                                           </td>
                                        </tr>
                                        <tr>
@@ -309,7 +352,7 @@
                                              <label for="h_manager">담당자</label>
                                           </th>
                                           <td>
-                                             <input type="text" id="h_manager" name="h_manager" class="input_full" placeholder="이름">
+                                             <input type="text" id="h_manager" name="h_manager" class="input_full" th:value="${user_info.h_manager}" placeholder="이름">
                                           </td>
                                        </tr>
                                        <tr>
@@ -317,7 +360,7 @@
                                              <label for="h_phone">담당자 연락처</label><span>*</span>
                                           </th>
                                           <td>
-                                             <input type="text" class="input_full" name="h_phone" id="h_phone" value="" maxlength="13" oninput="phoneAutoHyphen(this)" placeholder="휴대전화번호">
+                                             <input type="text" class="input_full" name="h_phone" id="h_phone" th:value="${user_info.h_phone}" maxlength="13" oninput="phoneAutoHyphen(this)" placeholder="휴대전화번호">
                                           </td>
                                        </tr>
 
@@ -326,7 +369,7 @@
                                              <label for="h_tel">병원 연락처</label><span>*</span>
                                           </th>
                                           <td>
-                                             <input type="text" class="input_full" name="h_tel" id="h_tel" value="" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
+                                             <input type="text" class="input_full" name="h_tel" id="h_tel" th:value="${user_info.h_tel}" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
                                           </td>
                                        </tr>
                                        <tr>
@@ -334,14 +377,14 @@
                                              <label for="h_fax">팩스 번호</label>
                                           </th>
                                           <td>
-                                             <input type="text" class="input_full" name="h_fax" id="h_fax" value="" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
+                                             <input type="text" class="input_full" name="h_fax" id="h_fax" th:value="${user_info.h_fax}" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
                                           </td>
                                        </tr>
                                     </tbody>
                                  </table>
                                  <div class="btn_wrap justify_end margin_top40">
-                                    <button class="btn style06 xlarge" type="button" onclick="history_back()">취소</button>
-                                    <button class="btn style01 xlarge" type="button" onclick="signUp();">추가</button>
+                                    <button class="btn style06 xlarge" type="button" onclick="history_back();">취소</button>
+                                    <button class="btn style01 xlarge" type="button" onclick="signUp();">수정</button>
                                  </div>
                               </form>
                            </div>

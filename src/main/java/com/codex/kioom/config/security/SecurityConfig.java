@@ -13,6 +13,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.UUID;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -23,8 +25,8 @@ public class SecurityConfig {
     @Autowired
     private CustomAuthSuccessHandler customAuthSuccessHandler;
 
-//    @Autowired
-//    UserDetailsService userDetailsService;
+    @Autowired
+    UserDetailsService userDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -35,10 +37,13 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").authenticated()
-                .antMatchers("/account_proc").permitAll()
+                .antMatchers("/account_proc").authenticated()
+                .antMatchers("/update_proc").authenticated()
                 .antMatchers("/user/**").authenticated()
                 .antMatchers("/data/**").authenticated()
                 .antMatchers("/monitoring/**").authenticated()
+                .antMatchers("/hospital/**").authenticated()
+                .antMatchers("/myData").authenticated()
                 .anyRequest().permitAll()
                 .and()
         .formLogin()
@@ -56,6 +61,13 @@ public class SecurityConfig {
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login")
                 .permitAll();
+        http
+            .rememberMe()
+            .key(UUID.randomUUID().toString())
+            .rememberMeParameter("remember-me")
+            .tokenValiditySeconds(86400*30)
+            .alwaysRemember(true)
+            .userDetailsService(userDetailsService);
 
         return http.build();
     }

@@ -10,11 +10,13 @@ public interface UserService {
 	Map<String, Object> userLogin(Map<String, Object> param); // 사용자 로그인
 	int getUserIdYn(Map<String, Object> param); // 아이디 중복 검사
 	void insertUser(Map<String, Object> param); // 병원 계정 등록
+	int updateUser(Map<String, Object> param); // 병원 정보 수정
+	List<Map<String, Object>> getHospitalList(Map<String, Object> param);
+	void deleteHospitalList(Map<String, Object> param);
+	int getHospitalListCnt(Map<String, Object> param);
 
 //	Map<String, Object> removeUser(String userCode);
-//
-//	Map<String, Object> updateUser(Map<String, Object> param);
-//
+
 //	Map<String, Object> bookmark(String hpid, String userCode);
 //
 //	boolean findByBookMark(String object, CustomUserDetails authUser);
@@ -35,7 +37,6 @@ public interface UserService {
 //
 //	Map<String, Object> userList(Map<String, Object> param);
 //
-//	Map<String, Object> getUserList();
 //
 //	Map<String, Object> getAgencyList(); // 사용자 등록 및 관리의 소속 드롭 박스
 //

@@ -41,7 +41,21 @@
    <script src="/js/fileUpload.js"></script>
    <script src="/js/util.js"></script>
 </head>
+<script th:inline="javascript">
 
+   // 로그아웃
+   async function logout(type){
+      if(!type) {
+         if(!confirm("로그아웃 하시겠습니까?")) return;
+      }
+      await fetch('/logout', {
+         method:'post',
+      })
+              .then(()=>{location.replace('/login')})
+              .catch(e=>console.log(e));
+   };
+
+</script>
 <body>
    <div id="wrap">
       <aside id="aside">
@@ -65,9 +79,9 @@
             <li class="depth1">
                <a href="/data/manage" class="depth1_title">데이터관리</a>
             </li>
-            <li class="depth1">
-               <a href="/monitoring/log" class="depth1_title active">모니터링</a>
-            </li>
+<!--            <li class="depth1">-->
+<!--               <a href="/monitoring/log" class="depth1_title active">모니터링</a>-->
+<!--            </li>-->
          </ul>
          <button class="siteMap-btn">
             <span class="siteMap-top"></span>
