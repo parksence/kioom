@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +55,8 @@ public class UserController {
 
         // 권한 코드
         modelView.addObject("role_cd", authUser.getRoleCd().toString());
+        // 로그인한 사용자 아이디
+        modelView.addObject("user_id", authUser.getUsername().toString());
 
         // 로그인 정보 전달
         Map<String, String> hm = new HashMap();
@@ -80,6 +83,72 @@ public class UserController {
         userService.deleteHospitalList(param);
 
         response.sendRedirect("/");
+    }
+
+    @RequestMapping(value = "/myData/{h_id}", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView myDataUserView(Model model, HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> param,
+                                   ModelAndView modelView, @AuthenticationPrincipal PrincipalDetails authUser, @PathVariable String h_id) throws IOException {
+
+        // 최고관리자가 아니면 메인 페이지로 이동
+        if(!authUser.getRoleCd().toString().equals("999")) {
+            modelView.setViewName("redirect:/");
+            return modelView;
+        }
+
+        // 권한 코드
+        modelView.addObject("role_cd", authUser.getRoleCd().toString());
+        // 로그인한 사용자 아이디
+        modelView.addObject("user_id", authUser.getUsername().toString());
+        // 선택한 유저 아이디 전달
+        param.put("h_id", h_id);
+
+        // 로그인 정보 전달
+        Map<String, Object> hm = userService.selectUserInfo(param);
+
+        Map<String, String> user_info = new HashMap();
+        user_info.put("h_id", hm.get("H_ID").toString());
+        user_info.put("email", hm.get("EMAIL").toString());
+        user_info.put("h_name", hm.get("H_NAME").toString());
+        user_info.put("h_location", hm.get("H_LOCATION").toString());
+        user_info.put("h_phone", hm.get("H_PHONE").toString());
+        user_info.put("h_tel", hm.get("H_TEL").toString());
+        user_info.put("h_manager", hm.get("H_MANAGER").toString());
+        user_info.put("h_fax", hm.get("H_FAX").toString());
+
+        modelView.addObject("user_info", user_info);
+
+        modelView.setViewName("/web/user/myData");
+        return modelView;
+    }
+
+    @RequestMapping(value = "/hospital/{h_id}", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView hospitalManagement(Model model, HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> param,
+                                       ModelAndView modelView, @AuthenticationPrincipal PrincipalDetails authUser, @PathVariable String h_id) throws IOException {
+
+        // 권한 코드
+        modelView.addObject("role_cd", authUser.getRoleCd().toString());
+        // 로그인한 사용자 아이디
+        modelView.addObject("user_id", authUser.getUsername().toString());
+        // 선택한 유저 아이디 전달
+        param.put("h_id", h_id);
+
+        // 로그인 정보 전달
+        Map<String, Object> hm = userService.selectUserInfo(param);
+
+        Map<String, String> user_info = new HashMap();
+        user_info.put("h_id", hm.get("H_ID").toString());
+        user_info.put("email", hm.get("EMAIL").toString());
+        user_info.put("h_name", hm.get("H_NAME").toString());
+        user_info.put("h_location", hm.get("H_LOCATION").toString());
+        user_info.put("h_phone", hm.get("H_PHONE").toString());
+        user_info.put("h_tel", hm.get("H_TEL").toString());
+        user_info.put("h_manager", hm.get("H_MANAGER").toString());
+        user_info.put("h_fax", hm.get("H_FAX").toString());
+
+        modelView.addObject("user_info", user_info);
+
+        modelView.setViewName("/web/user/hospital");
+        return modelView;
     }
 
 }

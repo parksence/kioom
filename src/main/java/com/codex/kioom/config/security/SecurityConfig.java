@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .antMatchers("/data/**").authenticated()
                 .antMatchers("/monitoring/**").authenticated()
                 .antMatchers("/hospital/**").authenticated()
-                .antMatchers("/myData").authenticated()
+                .antMatchers("/myData/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
         .formLogin()

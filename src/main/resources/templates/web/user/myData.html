@@ -251,7 +251,7 @@
                <ul class="depth2_wrap">
                   <th:block th:if="${role_cd} == '999'">
                      <li class="depth2">
-                        <a href="/user/hospital" class="depth2_title active">병원 관리</a>
+                        <a href="/" class="depth2_title active">병원 관리</a>
                      </li>
                   </th:block>
                   <li class="depth2">
@@ -282,7 +282,7 @@
                   <div class="controller">
                      <div class="log_menu before">
                         <p>
-                           <a href="/myData" id="user_name"><span th:text="${user_info.h_name}" /></a>님 안녕하세요.
+                           <a href="/myData" id="user_name"><span th:text="${user_id}" /></a>님 안녕하세요.
                         </p>
                         <button type="button" onclick="logout();">로그아웃</button>
                      </div>

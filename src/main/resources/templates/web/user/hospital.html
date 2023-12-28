@@ -71,7 +71,7 @@
                <ul class="depth2_wrap">
                   <th:block th:if="${role_cd} == '999'">
                      <li class="depth2">
-                        <a href="/user/hospital" class="depth2_title active">병원 관리</a>
+                        <a href="/" class="depth2_title active">병원 관리</a>
                      </li>
                   </th:block>
                   <li class="depth2">
@@ -100,7 +100,7 @@
                   <div class="controller">
                      <div class="log_menu before">
                         <p>
-                           <a href="/myData" id="user_name"><span th:text="${h_name}" /></a>님 안녕하세요.
+                           <a href="/myData" id="user_name"><span th:text="${user_id}" /></a>님 안녕하세요.
                         </p>
                         <button type="button" onclick="logout();">로그아웃</button>
                      </div>
@@ -192,20 +192,25 @@
                                  <div>
                                     <figure class="thum"></figure>
                                     <div>
-                                       <b>한마음한의원</b>
-                                       <span>김태윤 담당자</span>
+                                       <b th:text="${user_info.h_name}">한마음한의원</b>
+                                       <span th:text="${user_info.h_manager} + ' 담당자'">김태윤 담당자</span>
                                     </div>
                                  </div>
-                                 <a href="#">관리</a>
+                                 <th:block th:if="${role_cd == '999'}">
+                                    <a th:href="@{'/myData/' + ${user_info.h_id}}">관리</a>
+                                 </th:block>
+                                 <th:block th:unless="${role_cd == '999'}">
+                                    <a href="/myData">관리</a>
+                                 </th:block>
                               </div>
                               <div class="user_widget_section02">
                                  <div>
                                     <b>위치</b>
-                                    <p>대전광역시 서구 둔산로 20(둔산동 1072)</p>
+                                    <p th:text="${user_info.h_location}">대전광역시 서구 둔산로 20(둔산동 1072)</p>
                                  </div>
                                  <div>
                                     <b>연락처</b>
-                                    <p>042-488-8875</p>
+                                    <p th:text="${user_info.h_tel}">042-488-8875</p>
                                  </div>
                               </div>
                            </div>
@@ -214,7 +219,7 @@
                            <div class="user_widget">
                               <div class="user_widget_section03">
                                  <div class="margin_bt20">
-                                    <h4 class="fontSize_20 fontWeight_700">data 1</h4>
+                                    <h4 class="fontSize_20 fontWeight_700">담당자</h4>
                                     <a href="#">관리</a>
                                  </div>
                                  <div class="user_list">

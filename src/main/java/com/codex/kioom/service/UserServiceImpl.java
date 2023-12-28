@@ -84,6 +84,12 @@ public class UserServiceImpl implements UserService {
 		return totalCnt;
 	}
 
+	@Override
+	public Map<String, Object> selectUserInfo(Map<String, Object> param) {
+		Map<String, Object> userInfo = userDAO.selectUserInfo(param);
+		return userInfo;
+	}
+
 
 //	@Override
 //	public Map<String, Object> userList(Map<String, Object> param) {

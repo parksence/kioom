@@ -89,7 +89,8 @@
 
 	<!-- 병원 리스트 조회 -->
 	<select id="getHospitalList" parameterType="hashMap" resultType="map">
-		SELECT H_ID
+		SELECT IDX
+		     , H_ID
 		     , EMAIL
 		     , H_NAME
 		     , H_LOCATION
@@ -106,7 +107,7 @@
 				)
 			</if>
 		</where>
-		 ORDER BY CREATE_DATE DESC
+		 ORDER BY IDX DESC
 		 LIMIT #{startIndex}, #{pageSize}
 	</select>
 
@@ -127,5 +128,22 @@
 	<delete id="deleteHospitalList" parameterType="map">
 		DELETE FROM hospital_m WHERE H_ID = #{h_id}
 	</delete>
+
+	<select id="selectUserInfo" parameterType="map" resultType="map">
+		SELECT H_ID
+			 , EMAIL
+			 , H_NAME
+			 , H_LOCATION
+			 , H_MANAGER
+			 , H_PHONE
+			 , H_TEL
+			 , H_FAX
+			 , CREATE_DATE
+			 , UPDATE_DATE
+			 , ROLE_CD
+			 , ROLE_NM
+		FROM hospital_m
+		WHERE H_ID = #{h_id}
+	</select>
 
 </mapper>

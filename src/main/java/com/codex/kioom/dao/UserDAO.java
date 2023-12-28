@@ -18,4 +18,5 @@ public interface UserDAO {
     List<Map<String, Object>> getHospitalList(Map<String, Object> param);
     void deleteHospitalList(Map<String, Object> param);
     int getHospitalListCnt(Map<String, Object> param);
+    Map<String, Object> selectUserInfo(Map<String, Object> param);
 }

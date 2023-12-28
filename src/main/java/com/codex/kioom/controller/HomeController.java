@@ -23,6 +23,11 @@ public class HomeController {
     public ModelAndView home(ModelAndView modelView, Model model, @AuthenticationPrincipal PrincipalDetails authUser
                            , @RequestParam Map<String, Object> param, @RequestParam(defaultValue = "1") int page) throws Exception {
 
+        if (authUser == null) {
+            modelView.setViewName("redirect:/");
+            return modelView;
+        }
+
         // 병원 이름
         modelView.addObject("h_name", authUser.getUsername().toString());
         // 권한 코드
@@ -38,21 +43,36 @@ public class HomeController {
 
             // DB select start index
             int startIndex = pagination.getStartIndex();
-            System.out.println("startIndex = " + startIndex);
             // 페이지 당 보여지는 게시글의 최대 개수
             int pageSize = pagination.getPageSize();
-            System.out.println("pageSize = " + pageSize);
 
             param.put("startIndex", startIndex);
             param.put("pageSize", pageSize);
 
             // 병원 목록 조회
             modelView.addObject("hospital_list", userService.getHospitalList(param));
+            modelView.addObject("totalCnt", totalCnt);
             modelView.addObject("pagination", pagination);
             modelView.addObject("page_active", page);
 
             modelView.setViewName("/web/user/dashboard");
         } else {
+            // 로그인한 사용자 아이디
+            modelView.addObject("user_id", authUser.getUsername().toString());
+
+            // 로그인 정보 전달
+            Map<String, String> hm = new HashMap();
+            hm.put("h_id", authUser.getUsername());
+            hm.put("email", authUser.getEmail());
+            hm.put("h_name", authUser.getName());
+            hm.put("h_location", authUser.getLocation());
+            hm.put("h_phone", authUser.getPhone());
+            hm.put("h_tel", authUser.getTel());
+            hm.put("h_manager", authUser.getManager());
+            hm.put("h_fax", authUser.getFax());
+
+            modelView.addObject("user_info", hm);
+
             modelView.setViewName("/web/user/hospital");
         }
 
@@ -135,18 +155,15 @@ public class HomeController {
         // 생성인자로 총 게시물 수, 현재 페이지를 전달
         Pagination pagination = new Pagination(totalCnt, page);
 
-        // DB select start index
-        int startIndex = pagination.getStartIndex();
-        System.out.println("startIndex = " + startIndex);
-        // 페이지 당 보여지는 게시글의 최대 개수
-        int pageSize = pagination.getPageSize();
-        System.out.println("pageSize = " + pageSize);
+        int startIndex = pagination.getStartIndex(); // DB select start index
+        int pageSize = pagination.getPageSize(); // 페이지 당 보여지는 게시글의 최대 개수
 
         param.put("startIndex", startIndex);
         param.put("pageSize", pageSize);
 
         // 병원 목록 조회
         modelView.addObject("hospital_list", userService.getHospitalList(param));
+        modelView.addObject("totalCnt", totalCnt);
         modelView.addObject("pagination", pagination);
         modelView.addObject("page_active", page);
 

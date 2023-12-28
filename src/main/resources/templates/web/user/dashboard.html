@@ -63,9 +63,6 @@
          .catch(e=>console.log(e));
    };
 
-   const total_cnt = [[${hospital_list}]];
-   console.log(total_cnt, 'total_cnt')
-
    // 체크된 병원 정보 삭제
    function deleteHospital() {
       const hospital_list = document.hospital_list;
@@ -166,7 +163,7 @@
                      <article>
                         <div class="subContainer">
                            <div class="sub_content_section">
-                              <span class="total_text">Total: <span th:text="${hospital_list.size()}" />건</span>
+                              <span class="total_text">Total: <span th:text="${totalCnt}" />건</span>
                               <div class="table_wrap" data-wrap="checkbox_body">
                                  <table class="custom_table" id="hospital_table" data-form="checked_content">
                                     <colgroup>
@@ -205,7 +202,7 @@
                                        <th:block th:unless="${#lists.isEmpty(hospital_list)}">
                                           <th:block th:each="item, i : ${hospital_list}">
                                              <tr>
-                                                <td th:text="${i.index + 1}" />
+                                                <td th:text="${item.IDX}" />
                                                 <td>
                                                    <span class="custom_checkbox">
                                                       <input type="checkbox" th:id="hospital_+${i.index + 1}" th:name="hospital_+${i.index + 1}">
@@ -214,11 +211,15 @@
                                                    </span>
                                                 </td>
                                                 <td th:text="${item.H_ID}">jitoon420</td>
-                                                <td th:text="${item.H_NAME}">코코로한의원</td>
+                                                <td>
+                                                   <a th:href="@{'/hospital/' + ${item.H_ID}}" th:text="${item.H_NAME}">코코로한의원</a>
+                                                </td>
                                                 <td th:text="${item.H_TEL}">042-476-7675</td>
                                                 <td th:text="${item.H_LOCATION}">대전광역시 서구 둔산2동</td>
                                                 <td th:text="${item.H_MANAGER}">김태윤</td>
-                                                <td><a href="/myData/${item.H_ID}" class="status type06">관리</a></td>
+                                                <td>
+                                                   <a th:href="@{'/myData/' + ${item.H_ID}}" class="status type06">관리</a>
+                                                </td>
                                              </tr>
                                           </th:block>
                                        </th:block>
@@ -229,7 +230,8 @@
                                  <button
                                     class="btn style02 xlarge"
                                     onclick="modalOpen(this, resetFileList('files'))"
-                                    data-modal="modal_type01">
+                                    data-modal="modal_type01"
+                                    type="button">
                                     파일 업로드
                                  </button>
                                  <div class="btn_wrap justify_start">
@@ -276,8 +278,8 @@
                   파일 업로드
                   <span>한국한의학연구원</span>
                </h5>
-               <button class="btn_modal_close modal_close icon_font" data-modal="modal_type01"> 
-                  <i class="xi-close"></i> 
+               <button class="btn_modal_close modal_close icon_font" data-modal="modal_type01">
+                  <i class="xi-close"></i>
                   <span class="sr-only">닫기</span>
                </button>
             </div>
@@ -287,12 +289,12 @@
                      <p><span>업로드할 파일 놓기</span><br> 또는 </p>
                   </div>
                   <div>
-                     <input 
-                     id="files" 
-                     class="hidden" 
-                     name="files" 
-                     onchange="asyncFileNameView(this, 'arr_file_list');" 
-                     type="file" 
+                     <input
+                     id="files"
+                     class="hidden"
+                     name="files"
+                     onchange="asyncFileNameView(this, 'arr_file_list');"
+                     type="file"
                      accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                      multiple>
                      <label for="files" class="btn dis_inlineBlock large style02">파일 선택</label>
