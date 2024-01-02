@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class UserDTO {
+public class UserDTO implements Serializable {
     private String H_ID;
     private String EMAIL;
     private String H_PW;

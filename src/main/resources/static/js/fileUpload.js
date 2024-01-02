@@ -1,3 +1,4 @@
+// 파일 목록을 표시하기 위한 HTML 요소로를 생성
 function fileListElement(target, fileName, dataValue, index) {
    var elem = "<div class=\"file_arg\">" +
    "<a href=\"#\">"+ fileName +"</a>"+
@@ -8,11 +9,13 @@ function fileListElement(target, fileName, dataValue, index) {
    return elem;
 };
 
+// 파일이 첨부되지 않았을 때 보여줄 메시지를 생성하는 함수
 function nonFileElement() {
    var elem = "<p class='file_placeholder fontSize_15 fontColor_8C8C8C'>파일을 첨부해주세요</p>";
    return elem;
 };
 
+// 파일을 처리하고 화면에 표시하는 로직
 function fn_fileNameView(that, dataValue, max) { 
    var $fileCart = $('[data-filewrapper="'+ that.id +'"]');
 	var dataTransfer = new DataTransfer();
@@ -65,6 +68,7 @@ function fn_fileNameView(that, dataValue, max) {
 
 };
 
+// 파일 삭제 함수
 function fn_delete_fileName(that, dataValue, del_index) { //파일명과 , 삭제할 파일의 index를 받는다.
 	var dataTransfer = new DataTransfer();
    var target = $(that).attr('data-target');
@@ -94,9 +98,6 @@ function fn_delete_fileName(that, dataValue, del_index) { //파일명과 , 삭�
 
 };
 
-
-
-
 // 파일 업로드 모듈
 const fileUploadModule = {
    XLS: 'application/vnd.ms-excel',
@@ -113,6 +114,29 @@ const fileUploadModule = {
 
       add_files.forEach(function(arg) {
          $fileCart.append(asyncFileListElement(arg));
+
+         // 엑셀 업로드
+         var formData = new FormData();
+         formData.append('file', arg);
+
+         $.ajax({
+            url:'/api/uploadExcel',
+            method:'post',
+            data:formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+               console.log('response', response)
+            },
+            error: function (xhr, status, error) {
+               if (xhr.responseJSON && xhr.responseJSON.message) {
+                  var errorMessage = xhr.responseJSON.message;
+                  alert(errorMessage);
+               } else {
+                  console.error('Error')
+               }
+            }
+         })
       });
    },
    // 드래그 앤 드랍 파일 업로드
@@ -127,6 +151,29 @@ const fileUploadModule = {
 
       add_files.forEach(function(arg) {
          $fileCart.append(asyncFileListElement(arg));
+
+         // 엑셀 업로드
+         var formData = new FormData();
+         formData.append('file', arg);
+
+         $.ajax({
+            url:'/api/uploadExcel',
+            method:'post',
+            data:formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+               console.log('response', response)
+            },
+            error: function (xhr, status, error) {
+               if (xhr.responseJSON && xhr.responseJSON.message) {
+                  var errorMessage = xhr.responseJSON.message;
+                  alert(errorMessage);
+               } else {
+                  console.error('Error')
+               }
+            }
+         })
       });
    },
    // 업로드 파일 DOM Element 리스트 추가 

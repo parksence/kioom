@@ -52,8 +52,8 @@
       await fetch('/logout', {
          method:'post',
       })
-              .then(()=>{location.replace('/login')})
-              .catch(e=>console.log(e));
+         .then(()=>{location.replace('/login')})
+         .catch(e=>console.log(e));
    };
 
 </script>
@@ -74,9 +74,12 @@
                         <a href="/" class="depth2_title">병원 관리</a>
                      </li>
                   </th:block>
-                  <li class="depth2">
+                  <th:block th:if="${role_cd == '999'}">
                      <a href="/user/patient" class="depth2_title active">환자 관리</a>
-                  </li>
+                  </th:block>
+                  <th:block th:unless="${role_cd == '999'}">
+                     <a href="/user/patient" class="depth2_title active">환자 관리</a>
+                  </th:block>
                </ul>
             </li>
             <li class="depth1">
@@ -120,7 +123,7 @@
                                     이동희
                                     <span>42세, 남</span>
                                  </h4>
-                                 <a href="#">환자관리</a>
+<!--                                 <a href="#">환자관리</a>-->
                               </div> 
                               <div class="user_info_section02">
                                  <ul>

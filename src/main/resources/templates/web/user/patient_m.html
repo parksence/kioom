@@ -79,11 +79,6 @@
       document.hospital_list.submit();
    }
 
-   // 화면 새로고침 기능
-   function closeModal() {
-      window.location.reload();
-   }
-
 </script>
 <body>
    <div id="wrap">
@@ -99,12 +94,15 @@
                <ul class="depth2_wrap">
                   <th:block th:if="${role_cd} == '999'">
                      <li class="depth2">
-                        <a href="/" class="depth2_title active">병원 관리</a>
+                        <a href="/" class="depth2_title">병원 관리</a>
                      </li>
                   </th:block>
-                  <li class="depth2">
-                     <a href="/user/patient" class="depth2_title">환자 관리</a>
-                  </li>
+                  <th:block th:if="${role_cd == '999'}">
+                     <a href="/user/patient" class="depth2_title active">환자 관리</a>
+                  </th:block>
+                  <th:block th:unless="${role_cd == '999'}">
+                     <a href="/user/patient" class="depth2_title active">환자 관리</a>
+                  </th:block>
                </ul>
             </li>
             <li class="depth1">
@@ -232,16 +230,13 @@
                                  </table>
                               </div>
                               <div class="btn_wrap space_between">
-                                 <div class="btn_wrap">
-                                    <button
-                                       class="btn style02 xlarge"
-                                       onclick="modalOpen(this, resetFileList('files'))"
-                                       data-modal="modal_type01"
-                                       type="button">
-                                       엑셀 업로드
-                                    </button>
-                                    <a class="btn style01 xlarge" href="/download?path=/static/file/sample.xlsx&filename=sample.xlsx" download="sample.xlsx">양식 다운로드</a>
-                                 </div>
+                                 <button
+                                    class="btn style02 xlarge"
+                                    onclick="modalOpen(this, resetFileList('files'))"
+                                    data-modal="modal_type01"
+                                    type="button">
+                                    파일 업로드
+                                 </button>
                                  <div class="btn_wrap justify_start">
                                     <button class="btn style06 xlarge" type="button" onclick="deleteHospital();">삭제</button>
                                     <button class="btn style01 xlarge" type="button" onclick="window.location.href='/user/account'">등록</button>
@@ -286,7 +281,7 @@
                   파일 업로드
                   <span>한국한의학연구원</span>
                </h5>
-               <button class="btn_modal_close modal_close icon_font" data-modal="modal_type01" onclick="closeModal()">
+               <button class="btn_modal_close modal_close icon_font" data-modal="modal_type01">
                   <i class="xi-close"></i>
                   <span class="sr-only">닫기</span>
                </button>

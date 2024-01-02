@@ -71,6 +71,25 @@
 			);
 	</insert>
 
+	<insert id="insertExcelUser" parameterType="map">
+		INSERT INTO hospital_m(H_ID, EMAIL, H_PW, H_NAME, H_LOCATION, H_MANAGER, H_PHONE, H_TEL, H_FAX, ROLE_CD, ROLE_NM, CREATE_DATE, UPDATE_DATE)
+		VALUES
+			( #{h_id}
+			, #{email}
+			, #{h_pw}
+			, #{h_name}
+			, #{h_location}
+			, #{h_manager}
+			, #{h_phone}
+			, #{h_tel}
+			, #{h_fax}
+			, '1'
+			, '관리자'
+			, CURRENT_TIMESTAMP
+			, CURRENT_TIMESTAMP
+			);
+	</insert>
+
 	<update id="updateUser" parameterType="map">
 		UPDATE hospital_m
            SET EMAIL = #{email}
@@ -142,8 +161,13 @@
 			 , UPDATE_DATE
 			 , ROLE_CD
 			 , ROLE_NM
-		FROM hospital_m
-		WHERE H_ID = #{h_id}
+		  FROM hospital_m
+		 WHERE H_ID = #{h_id}
+	</select>
+
+	<select id="selectUserId" resultType="String">
+		SELECT H_ID
+		  FROM hospital_m
 	</select>
 
 </mapper>

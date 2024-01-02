@@ -47,6 +47,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void insertExcelUser(Map<String, Object> param) {
+		userDAO.insertExcelUser(param);
+	}
+
+	@Override
 	public int updateUser(Map<String, Object> param) {
 
 		if(!param.get("password").equals("")) {
@@ -87,6 +92,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Map<String, Object> selectUserInfo(Map<String, Object> param) {
 		Map<String, Object> userInfo = userDAO.selectUserInfo(param);
+		return userInfo;
+	}
+
+	@Override
+	public List<String> selectUserId() {
+		List<String> userInfo = userDAO.selectUserId();
 		return userInfo;
 	}
 
