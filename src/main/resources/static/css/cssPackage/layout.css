@@ -182,7 +182,10 @@
    border: 1px solid var(--colorE4E7EC);
 }
 .widget_section > article:nth-of-type(1) > div:first-child {
-   flex: 1 auto;
+   flex: 0.7 auto;
+}
+.widget_section > article:nth-of-type(1) > div:last-child {
+   flex: 0.3 auto;
 }
 .widget_section > article:nth-of-type(1) > div:first-child .widget_container {
    height: 100%;

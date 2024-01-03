@@ -205,48 +205,24 @@
                               </div>
                               <div class="user_widget_section02">
                                  <div>
-                                    <b>위치</b>
+                                    <b>병원 위치</b>
                                     <p th:text="${user_info.h_location}">대전광역시 서구 둔산로 20(둔산동 1072)</p>
                                  </div>
                                  <div>
-                                    <b>연락처</b>
+                                    <b>이메일</b>
+                                    <p th:text="${user_info.email}">teset@test.com</p>
+                                 </div>
+                                 <div>
+                                    <b>병원 연락처</b>
                                     <p th:text="${user_info.h_tel}">042-488-8875</p>
                                  </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="widget_container">
-                           <div class="user_widget">
-                              <div class="user_widget_section03">
-                                 <div class="margin_bt20">
-                                    <h4 class="fontSize_20 fontWeight_700">담당자</h4>
-                                    <a href="#">관리</a>
+                                 <div>
+                                    <b>담당자 연락처</b>
+                                    <p th:text="${user_info.h_phone}">010-1234-1234</p>
                                  </div>
-                                 <div class="user_list">
-                                    <div>
-                                       <figure class="thum"></figure>
-                                       이동희
-                                    </div>
-                                    <div>
-                                       <figure class="thum"></figure>
-                                       송문호
-                                    </div>
-                                    <div>
-                                       <figure class="thum"></figure>
-                                       배동열
-                                    </div>
-                                    <div>
-                                       <figure class="thum"></figure>
-                                       이민호
-                                    </div>
-                                    <div>
-                                       <figure class="thum"></figure>
-                                       송강호
-                                    </div>
-                                    <div>
-                                       <figure class="thum"></figure>
-                                       김진우
-                                    </div>
+                                 <div>
+                                    <b>팩스 번호</b>
+                                    <p th:text="${user_info.h_fax}">042-488-8875</p>
                                  </div>
                               </div>
                            </div>

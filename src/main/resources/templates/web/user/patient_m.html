@@ -229,19 +229,6 @@
                                     </tbody>
                                  </table>
                               </div>
-                              <div class="btn_wrap space_between">
-                                 <button
-                                    class="btn style02 xlarge"
-                                    onclick="modalOpen(this, resetFileList('files'))"
-                                    data-modal="modal_type01"
-                                    type="button">
-                                    파일 업로드
-                                 </button>
-                                 <div class="btn_wrap justify_start">
-                                    <button class="btn style06 xlarge" type="button" onclick="deleteHospital();">삭제</button>
-                                    <button class="btn style01 xlarge" type="button" onclick="window.location.href='/user/account'">등록</button>
-                                 </div>
-                              </div>
                               <div class="pagination">
                                  <ul>
                                     <li class="first_page">
@@ -272,50 +259,6 @@
                </div>
             </form>
          </main>
-      </div>
-      <!-- modal -->
-      <div class="modal modal_type01 modal_bg file_upload">
-         <div class="modal_container" style="max-width:90rem;">
-            <div class="modal_header">
-               <h5 class="modal_title">
-                  파일 업로드
-                  <span>한국한의학연구원</span>
-               </h5>
-               <button class="btn_modal_close modal_close icon_font" data-modal="modal_type01">
-                  <i class="xi-close"></i>
-                  <span class="sr-only">닫기</span>
-               </button>
-            </div>
-            <div class="modal_body">
-               <div id="drop_zone">
-                  <div class="upload_before">
-                     <p><span>업로드할 파일 놓기</span><br> 또는 </p>
-                  </div>
-                  <div>
-                     <input
-                     id="files"
-                     class="hidden"
-                     name="files"
-                     onchange="asyncFileNameView(this, 'arr_file_list');"
-                     type="file"
-                     accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                     multiple>
-                     <label for="files" class="btn dis_inlineBlock large style02">파일 선택</label>
-                  </div>
-                  <div id="drag_over" style="display: none;"></div>
-               </div>
-               <div class="upload_data">
-                  <span>지원 파일 형식:</span>
-                  <ul class="file_list">
-                     <li class="file_item xls">XLS</li>
-                     <li class="file_item csv">CSV</li>
-                  </ul>
-                  <span>(Maximum file size: 1 GB)</span>
-               </div>
-               <div class="file_name" data-filewrapper="files">
-               </div>
-            </div>
-         </div>
       </div>
    </div>
 </body>
