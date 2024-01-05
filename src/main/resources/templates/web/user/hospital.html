@@ -41,6 +41,8 @@
    <!-- js -->
    <script src="/js/layout.js"></script>
    <script src="/js/util.js"></script>
+   <script src="/js/fileUpload.js"></script>
+   <script src="/js/modal.js"></script>
 </head>
 <script th:inline="javascript">
 
@@ -96,7 +98,7 @@
          <header id="header">
             <div class="container">
                <div class="clear-fix">
-                  <h3 class="page_title">교육컨텐츠</h3>
+                  <h3 class="page_title">병원 관리</h3>
                   <div class="controller">
                      <div class="log_menu before">
                         <p>
@@ -132,54 +134,21 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr>
-                                       <td>1</td>
-                                       <td>이동희</td>
-                                       <td>Pulse Waveform</td>
-                                       <td>2023-04-10</td>
-                                    </tr>
-                                    <tr>
-                                       <td>2</td>
-                                       <td>송문호</td>
-                                       <td>Pulse Waveform</td>
-                                       <td>2023-09-26</td>
-                                    </tr>
-                                    <tr>
-                                       <td>3</td>
-                                       <td>배동열</td>
-                                       <td>Pulse Diagnosis</td>
-                                       <td>2023-09-26</td>
-                                    </tr>
-                                    <tr>
-                                       <td>4</td>
-                                       <td>이민호</td>
-                                       <td>Hemodynamic</td>
-                                       <td>2023-09-26</td>
-                                    </tr>
-                                    <tr>
-                                       <td>5</td>
-                                       <td>송강호</td>
-                                       <td>Pulse Waveform Analysis (Time, Age)</td>
-                                       <td>2023-09-26</td>
-                                    </tr>
-                                    <tr>
-                                       <td>6</td>
-                                       <td>김진우</td>
-                                       <td>Hemodynamic & Pulse Pressure Analysis</td>
-                                       <td>2023-09-26</td>
-                                    </tr>
-                                    <tr>
-                                       <td>7</td>
-                                       <td>이태운</td>
-                                       <td>Pulse Diagnosis</td>
-                                       <td>2023-09-26</td>
-                                    </tr>
-                                    <tr>
-                                       <td>8</td>
-                                       <td>김태훈</td>
-                                       <td>Vessel Elasticity</td>
-                                       <td>2023-09-26</td>
-                                    </tr>
+                                    <th:block th:if="${#lists.isEmpty(patient_list)}">
+                                       <tr class="no_data">
+                                          <td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+                                       </tr>
+                                    </th:block>
+                                    <th:block th:unless="${#lists.isEmpty(patient_list)}">
+                                       <th:block th:each="item : ${patient_list}">
+                                          <tr>
+                                             <td th:text="${item.IDX}">1</td>
+                                             <td th:text="${item.PATIENT_NAME}">이동희</td>
+                                             <td th:text="${item.TEST_NAME}">Pulse Waveform</td>
+                                             <td th:text="${item.TEST_DATE}">2023-04-10</td>
+                                          </tr>
+                                       </th:block>
+                                    </th:block>
                                  </tbody>
                               </table>
                            </div>
@@ -192,12 +161,12 @@
                                  <div>
                                     <figure class="thum"></figure>
                                     <div>
-                                       <b th:text="${user_info.h_name}">한마음한의원</b>
-                                       <span th:text="${user_info.h_manager} + ' 담당자'">김태윤 담당자</span>
+                                       <b th:text="${user_info.H_NAME}">한마음한의원</b>
+                                       <span th:text="${user_info.H_MANAGER} + ' 담당자'">김태윤 담당자</span>
                                     </div>
                                  </div>
                                  <th:block th:if="${role_cd == '999'}">
-                                    <a th:href="@{'/myData/' + ${user_info.h_id}}">관리</a>
+                                    <a th:href="@{'/myData/' + ${user_info.H_ID}}">관리</a>
                                  </th:block>
                                  <th:block th:unless="${role_cd == '999'}">
                                     <a href="/myData">관리</a>
@@ -206,24 +175,33 @@
                               <div class="user_widget_section02">
                                  <div>
                                     <b>병원 위치</b>
-                                    <p th:text="${user_info.h_location}">대전광역시 서구 둔산로 20(둔산동 1072)</p>
+                                    <p th:text="${user_info.H_LOCATION}">대전광역시 서구 둔산로 20(둔산동 1072)</p>
                                  </div>
                                  <div>
                                     <b>이메일</b>
-                                    <p th:text="${user_info.email}">teset@test.com</p>
+                                    <p th:text="${user_info.EMAIL}">teset@test.com</p>
                                  </div>
                                  <div>
                                     <b>병원 연락처</b>
-                                    <p th:text="${user_info.h_tel}">042-488-8875</p>
+                                    <p th:text="${user_info.H_TEL}">042-488-8875</p>
                                  </div>
                                  <div>
                                     <b>담당자 연락처</b>
-                                    <p th:text="${user_info.h_phone}">010-1234-1234</p>
+                                    <p th:text="${user_info.H_PHONE}">010-1234-1234</p>
                                  </div>
                                  <div>
                                     <b>팩스 번호</b>
-                                    <p th:text="${user_info.h_fax}">042-488-8875</p>
+                                    <p th:text="${user_info.H_FAX}">042-488-8875</p>
                                  </div>
+                              </div>
+                              <div class="btn_wrap space_between">
+                                 <button
+                                         class="btn style02 xlarge"
+                                         onclick="modalOpen(this, resetFileList('files'))"
+                                         data-modal="modal_type01"
+                                         type="button">
+                                    엑셀 업로드
+                                 </button>
                               </div>
                            </div>
                         </div>
@@ -247,6 +225,50 @@
                </section>
             </div>
          </main>
+      </div>
+   </div>
+   <!-- modal -->
+   <div class="modal modal_type01 modal_bg file_upload">
+      <div class="modal_container" style="max-width:90rem;">
+         <div class="modal_header">
+            <h5 class="modal_title">
+               엑셀 업로드
+               <span>한국한의학연구원</span>
+            </h5>
+            <button class="btn_modal_close modal_close icon_font" data-modal="modal_type01" onclick="closeModal()">
+               <i class="xi-close"></i>
+               <span class="sr-only">닫기</span>
+            </button>
+         </div>
+         <div class="modal_body">
+            <div id="drop_zone">
+               <div class="upload_before">
+                  <p><span>업로드할 파일 놓기</span><br> 또는 </p>
+               </div>
+               <div>
+                  <input
+                          id="files"
+                          class="hidden"
+                          name="files"
+                          onchange="asyncFileNameView(this, 'arr_file_list');"
+                          type="file"
+                          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                          multiple>
+                  <label for="files" class="btn dis_inlineBlock large style02">파일 선택</label>
+               </div>
+               <div id="drag_over" style="display: none;"></div>
+            </div>
+            <div class="upload_data">
+               <span>지원 파일 형식:</span>
+               <ul class="file_list">
+                  <li class="file_item xls">XLS</li>
+                  <li class="file_item csv">CSV</li>
+               </ul>
+               <span>(Maximum file size: 1 GB)</span>
+            </div>
+            <div class="file_name" data-filewrapper="files">
+            </div>
+         </div>
       </div>
    </div>
    <!-- data1 chart -->

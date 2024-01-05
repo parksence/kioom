@@ -165,6 +165,23 @@
 		 WHERE H_ID = #{h_id}
 	</select>
 
+	<select id="selectUserInfoDto" parameterType="User" resultType="User">
+		SELECT H_ID
+			 , EMAIL
+			 , H_NAME
+			 , H_LOCATION
+			 , H_MANAGER
+			 , H_PHONE
+			 , H_TEL
+			 , H_FAX
+			 , CREATE_DATE
+			 , UPDATE_DATE
+			 , ROLE_CD
+			 , ROLE_NM
+		FROM hospital_m
+		WHERE H_ID = #{H_ID}
+	</select>
+
 	<select id="selectUserId" resultType="String">
 		SELECT H_ID
 		  FROM hospital_m

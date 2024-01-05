@@ -9,7 +9,6 @@ import java.util.Map;
 
 @Mapper
 public interface UserDAO {
-
     Map<String, Object> userChk(Map<String, Object> param);
     ArrayList<UserDTO> findByUserID(String username);
     int getUserIdYn(Map<String, Object> param);
@@ -20,5 +19,6 @@ public interface UserDAO {
     void deleteHospitalList(Map<String, Object> param);
     int getHospitalListCnt(Map<String, Object> param);
     Map<String, Object> selectUserInfo(Map<String, Object> param);
+    UserDTO selectUserInfoDto(UserDTO userDTO);
     List<String> selectUserId();
 }

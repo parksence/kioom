@@ -3,7 +3,7 @@
 
 <configuration>
 	<typeAliases>
-<!--		<typeAlias type="com.codex.config.vo.ExternalFiles" alias="ExternalFiles" />-->
 		<typeAlias type="com.codex.kioom.dto.UserDTO" alias="User"/>
+		<typeAlias type="com.codex.kioom.dto.PatientDTO" alias="PatientDTO"/>
 	</typeAliases>
 </configuration>

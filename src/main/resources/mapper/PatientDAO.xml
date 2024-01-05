@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codex.kioom.dao.PatientDAO">
+
+	<select id="getPatientList" parameterType="hashMap" resultType="map">
+		SELECT IDX
+		     , PATIENT_ID
+		     , PATIENT_NAME
+		     , GENDER
+		     , BIRTH
+		     , TEST_DATE
+		     , TEST_TIME
+		     , TEST_NAME
+		     , POSITION
+		     , PULSE_RATE
+		     , PULSE_POWER
+		     , PULSE_DEPTH
+		     , PULSE_SHAPE
+		     , R_AIX
+		     , SBP
+		     , DBP
+		     , MBP
+		     , SV
+		     , SVI
+		     , CO
+		     , SVRI
+		  FROM PATIENT_M
+		<where>
+			<if test="h_name != null and h_name != ''">
+			AND H_NAME = #{h_name}
+			</if>
+			<if test="search != null and search != ''">
+			AND ( PATIENT_ID LIKE CONCAT('%', #{search}, '%')
+			 OR PATIENT_NAME LIKE CONCAT('%', #{search}, '%')
+			)
+			</if>
+		</where>
+		 ORDER BY IDX DESC
+		 LIMIT #{startIndex}, #{pageSize}
+	</select>
+
+	<select id="getPatientListCnt" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*) AS cnt
+		  FROM PATIENT_M
+		<where>
+            <if test="h_name != null and h_name != ''">
+           AND H_NAME = #{h_name}
+			</if>
+			<if test="search != null and search != ''">
+		   AND ( PATIENT_ID LIKE CONCAT('%', #{search}, '%')
+		    OR PATIENT_NAME LIKE CONCAT('%', #{search}, '%')
+		       )
+			</if>
+		</where>
+	</select>
+
+	<select id="selectPatientInfo" parameterType="PatientDTO" resultType="PatientDTO">
+		SELECT IDX
+			 , PATIENT_ID
+			 , PATIENT_NAME
+			 , CASE WHEN GENDER = 'M' THEN '남'
+			        WHEN GENDER = 'F' THEN '여'
+			        ELSE '알수없음'
+			   END AS GENDER
+			 , TIMESTAMPDIFF(YEAR, BIRTH, CURDATE()) AS BIRTH
+			 , TEST_DATE
+			 , TEST_TIME
+			 , TEST_NAME
+			 , POSITION
+			 , PULSE_RATE
+			 , PULSE_POWER
+			 , PULSE_DEPTH
+			 , PULSE_SHAPE
+			 , R_AIX
+			 , SBP
+			 , DBP
+			 , MBP
+			 , SV
+			 , SVI
+			 , CO
+			 , SVRI
+		  FROM PATIENT_M
+		 WHERE PATIENT_ID = #{PATIENT_ID}
+		 LIMIT 1
+	</select>
+
+	<select id="selectPatientInfoList" parameterType="PatientDTO" resultType="PatientDTO">
+		SELECT IDX
+		     , PATIENT_ID
+			 , PATIENT_NAME
+			 , CASE WHEN GENDER = 'M' THEN '남'
+					WHEN GENDER = 'F' THEN '여'
+					ELSE '알수없음'
+			   END AS GENDER
+			 , TIMESTAMPDIFF(YEAR, BIRTH, CURDATE()) AS BIRTH
+			 , TEST_DATE
+			 , TEST_TIME
+			 , TEST_NAME
+			 , POSITION
+			 , PULSE_RATE
+			 , PULSE_POWER
+			 , PULSE_DEPTH
+			 , PULSE_SHAPE
+			 , R_AIX
+			 , SBP
+			 , DBP
+			 , MBP
+			 , SV
+			 , SVI
+			 , CO
+			 , SVRI
+		  FROM PATIENT_M
+		<where>
+			<if test="PATIENT_ID != null and PATIENT_ID != ''">
+				AND PATIENT_ID = #{PATIENT_ID}
+			</if>
+			<if test="H_NAME != null and H_NAME != ''">
+				AND H_NAME = (SELECT H_NAME FROM HOSPITAL_M WHERE H_ID = #{H_NAME})
+			</if>
+		</where>
+	     ORDER BY IDX DESC
+		 LIMIT 10
+	</select>
+
+
+</mapper>

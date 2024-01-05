@@ -311,7 +311,7 @@
                                              <input type="hidden" name="idCheckYn" id="idCheckYn" value="Y">
                                           </th>
                                           <td>
-                                            <input type="text" id="h_id" name="h_id" class="input_w200" th:value="${user_info.h_id}" placeholder="아이디" disabled="disabled">
+                                            <input type="text" id="h_id" name="h_id" class="input_w200" th:value="${user_info.H_ID}" placeholder="아이디" disabled="disabled">
                                             <button class="idCheck" type="button" onclick="userIdCheck();" disabled="disabled">중복확인</button>
                                           </td>
                                        </tr>
@@ -321,7 +321,7 @@
                                           </th>
                                           <td>
                                              <div class="input_wrap col3 justify_start">
-                                                <input type="text" class="input_full" name="email" id="email" th:value="${user_info.email}" maxlength="50" placeholder="이메일">
+                                                <input type="text" class="input_full" name="email" id="email" th:value="${user_info.EMAIL}" maxlength="50" placeholder="이메일">
                                              </div>
                                           </td>
                                        </tr>
@@ -338,13 +338,13 @@
                                              <label for="h_name">병원명</label><span>*</span>
                                           </th>
                                           <td>
-                                             <input type="text" id="h_name" name="h_name" th:value="${user_info.h_name}" class="input_full" placeholder="병원명">
+                                             <input type="text" id="h_name" name="h_name" th:value="${user_info.H_NAME}" class="input_full" placeholder="병원명">
                                           </td>
                                        </tr>
                                        <tr>
                                           <th scope="row">병원 위치<span>*</span></th>
                                           <td>
-                                             <input type="text" id="h_location" name="h_location" th:value="${user_info.h_location}" class="input_full" placeholder="주소">
+                                             <input type="text" id="h_location" name="h_location" th:value="${user_info.H_LOCATION}" class="input_full" placeholder="주소">
                                           </td>
                                        </tr>
                                        <tr>
@@ -352,7 +352,7 @@
                                              <label for="h_manager">담당자</label>
                                           </th>
                                           <td>
-                                             <input type="text" id="h_manager" name="h_manager" class="input_full" th:value="${user_info.h_manager}" placeholder="이름">
+                                             <input type="text" id="h_manager" name="h_manager" class="input_full" th:value="${user_info.H_MANAGER}" placeholder="이름">
                                           </td>
                                        </tr>
                                        <tr>
@@ -360,7 +360,7 @@
                                              <label for="h_phone">담당자 연락처</label><span>*</span>
                                           </th>
                                           <td>
-                                             <input type="text" class="input_full" name="h_phone" id="h_phone" th:value="${user_info.h_phone}" maxlength="13" oninput="phoneAutoHyphen(this)" placeholder="휴대전화번호">
+                                             <input type="text" class="input_full" name="h_phone" id="h_phone" th:value="${user_info.H_PHONE}" maxlength="13" oninput="phoneAutoHyphen(this)" placeholder="휴대전화번호">
                                           </td>
                                        </tr>
 
@@ -369,7 +369,7 @@
                                              <label for="h_tel">병원 연락처</label><span>*</span>
                                           </th>
                                           <td>
-                                             <input type="text" class="input_full" name="h_tel" id="h_tel" th:value="${user_info.h_tel}" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
+                                             <input type="text" class="input_full" name="h_tel" id="h_tel" th:value="${user_info.H_TEL}" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
                                           </td>
                                        </tr>
                                        <tr>
@@ -377,7 +377,7 @@
                                              <label for="h_fax">팩스 번호</label>
                                           </th>
                                           <td>
-                                             <input type="text" class="input_full" name="h_fax" id="h_fax" th:value="${user_info.h_fax}" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
+                                             <input type="text" class="input_full" name="h_fax" id="h_fax" th:value="${user_info.H_FAX}" maxlength="13" onchange="phoneAutoHyphen(this)" placeholder="전화번호">
                                           </td>
                                        </tr>
                                     </tbody>

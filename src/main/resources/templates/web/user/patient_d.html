@@ -56,6 +56,13 @@
          .catch(e=>console.log(e));
    };
 
+   const test = [[${patient_info}]];
+   console.log('test', test)
+
+   const test2 = [[${patient_list}]];
+   console.log('test2', test2)
+
+
 </script>
 <body>
    <div id="wrap">
@@ -99,11 +106,11 @@
          <header id="header">
             <div class="container">
                <div class="clear-fix">
-                  <h3 class="page_title">환자관리</h3>
+                  <h3 class="page_title">환자 관리</h3>
                   <div class="controller">
                      <div class="log_menu before">
                         <p>
-                           <a href="/myData" id="user_name"><span th:text="${h_name}" /></a>님 안녕하세요.
+                           <a href="/myData" id="user_name"><span th:text="${user_id}" /></a>님 안녕하세요.
                         </p>
                         <button type="button" onclick="logout();">로그아웃</button>
                      </div>
@@ -120,8 +127,8 @@
                            <div class="user_info">
                               <div class="user_info_section01">
                                  <h4>
-                                    이동희
-                                    <span>42세, 남</span>
+                                    <th:block th:text="${patient_info.PATIENT_NAME}"></th:block>
+                                    <span th:text="${patient_info.BIRTH + '세, ' + patient_info.GENDER}">42세, 남</span>
                                  </h4>
 <!--                                 <a href="#">환자관리</a>-->
                               </div> 
@@ -157,62 +164,22 @@
                                     <li>구분</li>
                                  </ul>
                                  <ul class="body_data_tbdoy">
-                                    <li>
-                                       <button type="button">
-                                          <span>1</span>
-                                          <span>2023-02-03</span>
-                                          <span>일상 기록</span>
-                                       </button>
-                                    </li>
-                                    <li>
-                                       <button class="active" type="button">
-                                          <span>2</span>
-                                          <span>2023-09-27</span>
-                                          <span>병원 방문</span>
-                                       </button>
-                                    </li>
-                                    <li>
-                                       <button type="button">
-                                          <span>3</span>
-                                          <span>2023-10-03</span>
-                                          <span>병원 방문</span>
-                                       </button>
-                                    </li>
-                                    <li>
-                                       <button type="button">
-                                          <span>4</span>
-                                          <span>2023-10-15</span>
-                                          <span>병원 방문</span>
-                                       </button>
-                                    </li>
-                                    <li>
-                                       <button type="button">
-                                          <span>5</span>
-                                          <span>2023-10-22</span>
-                                          <span>일상 기록</span>
-                                       </button>
-                                    </li>
-                                    <li>
-                                       <button type="button">
-                                          <span>6</span>
-                                          <span>2023-11-05</span>
-                                          <span>병원 방문</span>
-                                       </button>
-                                    </li>
-                                    <li>
-                                       <button type="button">
-                                          <span>7</span>
-                                          <span>2023-11-26</span>
-                                          <span>일상 기록</span>
-                                       </button>
-                                    </li>
-                                    <li>
-                                       <button type="button">
-                                          <span>8</span>
-                                          <span>2023-12-01</span>
-                                          <span>병원 방문</span>
-                                       </button>
-                                    </li>
+                                    <th:block th:if="${#lists.isEmpty(patient_list)}">
+                                       <tr class="no_data">
+                                          <td colspan="3" style="text-align: center;">데이터가 없습니다.</td>
+                                       </tr>
+                                    </th:block>
+                                    <th:block th:unless="${#lists.isEmpty(patient_list)}">
+                                       <th:block th:each="item, i : ${patient_list}">
+                                          <li>
+                                             <button type="button">
+                                                <span th:text="${i.index + 1}">1</span>
+                                                <span th:text="${item.TEST_DATE}"></span>
+                                                <span>일상 기록</span>
+                                             </button>
+                                          </li>
+                                       </th:block>
+                                    </th:block>
                                  </ul>
                               </div>
                            </div>

@@ -1,6 +1,9 @@
 package com.codex.kioom.controller;
 
 import com.codex.kioom.config.security.auth.PrincipalDetails;
+import com.codex.kioom.dto.PatientDTO;
+import com.codex.kioom.dto.UserDTO;
+import com.codex.kioom.service.PatientService;
 import com.codex.kioom.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PatientService patientService;
 
     @RequestMapping(value = "/checkUserId.ajax", method = RequestMethod.POST)
     public int checkUser(@RequestParam Map<String, Object> param) {
@@ -32,7 +39,6 @@ public class UserController {
 
         // 사용자 등록
         userService.insertUser(param);
-
         response.sendRedirect("/");
     }
 
@@ -59,17 +65,17 @@ public class UserController {
         modelView.addObject("user_id", authUser.getUsername().toString());
 
         // 로그인 정보 전달
-        Map<String, String> hm = new HashMap();
-        hm.put("h_id", authUser.getUsername());
-        hm.put("email", authUser.getEmail());
-        hm.put("h_name", authUser.getName());
-        hm.put("h_location", authUser.getLocation());
-        hm.put("h_phone", authUser.getPhone());
-        hm.put("h_tel", authUser.getTel());
-        hm.put("h_manager", authUser.getManager());
-        hm.put("h_fax", authUser.getFax());
+        UserDTO userDTO = new UserDTO();
+        userDTO.setH_ID(authUser.getUsername());
+        userDTO.setEMAIL(authUser.getEmail());
+        userDTO.setH_NAME(authUser.getName());
+        userDTO.setH_LOCATION(authUser.getLocation());
+        userDTO.setH_MANAGER(authUser.getManager());
+        userDTO.setH_PHONE(authUser.getPhone());
+        userDTO.setH_TEL(authUser.getTel());
+        userDTO.setH_FAX(authUser.getFax());
 
-        modelView.addObject("user_info", hm);
+        modelView.addObject("user_info", userDTO);
 
         modelView.setViewName("/web/user/myData");
         return modelView;
@@ -103,19 +109,11 @@ public class UserController {
         param.put("h_id", h_id);
 
         // 로그인 정보 전달
-        Map<String, Object> hm = userService.selectUserInfo(param);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setH_ID(h_id);
+        UserDTO userInfo = userService.selectUserInfo(userDTO);
 
-        Map<String, String> user_info = new HashMap();
-        user_info.put("h_id", hm.get("H_ID").toString());
-        user_info.put("email", hm.get("EMAIL").toString());
-        user_info.put("h_name", hm.get("H_NAME").toString());
-        user_info.put("h_location", hm.get("H_LOCATION").toString());
-        user_info.put("h_phone", hm.get("H_PHONE").toString());
-        user_info.put("h_tel", hm.get("H_TEL").toString());
-        user_info.put("h_manager", hm.get("H_MANAGER").toString());
-        user_info.put("h_fax", hm.get("H_FAX").toString());
-
-        modelView.addObject("user_info", user_info);
+        modelView.addObject("user_info", userInfo);
 
         modelView.setViewName("/web/user/myData");
         return modelView;
@@ -123,29 +121,26 @@ public class UserController {
 
     @RequestMapping(value = "/hospital/{h_id}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView hospitalManagement(Model model, HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> param,
-                                       ModelAndView modelView, @AuthenticationPrincipal PrincipalDetails authUser, @PathVariable String h_id) throws IOException {
+                                           ModelAndView modelView, @AuthenticationPrincipal PrincipalDetails authUser, @PathVariable String h_id) throws IOException {
 
         // 권한 코드
-        modelView.addObject("role_cd", authUser.getRoleCd().toString());
+        modelView.addObject("role_cd", (String) authUser.getRoleCd());
         // 로그인한 사용자 아이디
-        modelView.addObject("user_id", authUser.getUsername().toString());
-        // 선택한 유저 아이디 전달
-        param.put("h_id", h_id);
+        modelView.addObject("user_id", (String) authUser.getUsername());
 
-        // 로그인 정보 전달
-        Map<String, Object> hm = userService.selectUserInfo(param);
-
-        Map<String, String> user_info = new HashMap();
-        user_info.put("h_id", hm.get("H_ID").toString());
-        user_info.put("email", hm.get("EMAIL").toString());
-        user_info.put("h_name", hm.get("H_NAME").toString());
-        user_info.put("h_location", hm.get("H_LOCATION").toString());
-        user_info.put("h_phone", hm.get("H_PHONE").toString());
-        user_info.put("h_tel", hm.get("H_TEL").toString());
-        user_info.put("h_manager", hm.get("H_MANAGER").toString());
-        user_info.put("h_fax", hm.get("H_FAX").toString());
+        // 병원 정보 조회
+        UserDTO userDTO = new UserDTO();
+        userDTO.setH_ID(h_id);
+        UserDTO user_info = userService.selectUserInfo(userDTO);
 
         modelView.addObject("user_info", user_info);
+
+        // 환자 정보 조회
+        PatientDTO patientDTO = new PatientDTO();
+        patientDTO.setH_NAME(h_id);
+        List<PatientDTO> patient_list = patientService.selectPatientInfoList(patientDTO);
+
+        modelView.addObject("patient_list", patient_list);
 
         modelView.setViewName("/web/user/hospital");
         return modelView;
